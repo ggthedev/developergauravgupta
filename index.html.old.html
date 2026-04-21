@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Gaurav Gupta — Technical Architect (iOS) / Apple Platform Engineer / SDK &amp; Framework Engineer</title>
+<meta name="description" content="Software engineer/architect with experience spanning telecom dataplane development, systems/application support, QA automation, and Apple-platform engineering. Recent focus is on architecting and deve">
+<meta name="author" content="Gaurav Gupta">
+<meta property="og:title" content="Gaurav Gupta — Technical Architect (iOS) / Apple Platform Engineer / SDK &amp; Framework Engineer">
+<meta property="og:description" content="Software engineer/architect with experience spanning telecom dataplane development, systems/application support, QA automation, and Apple-platform engineering. Recent focus is on architecting and deve">
+<meta property="og:url" content="https://ggthedev.github.io/developergauravgupta/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gaurav Gupta — Technical Architect (iOS) / Apple Platform Engineer / SDK &amp; Framework Engineer">
+<meta name="twitter:description" content="Software engineer/architect with experience spanning telecom dataplane development, systems/application support, QA automation, and Apple-platform engineering. Recent focus is on architecting and deve">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#007AFF;--secondary:#5856D6;--accent:#FF2D92;
+  --txt1:#FFF;--txt2:#B0B0B0;
+  --bg1:#0A0A0A;--bg2:#1A1A1A;--bg3:#2A2A2A;--bdr:#333;
+  --grad1:linear-gradient(135deg,#007AFF 0%,#5856D6 100%);
+  --grad2:linear-gradient(135deg,#FF2D92 0%,#FF6B35 100%);
+  --shadow:0 10px 30px rgba(0,0,0,.3);
+  --shadow-h:0 20px 40px rgba(0,0,0,.4);
+}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.6;color:var(--txt1);background:var(--bg1);overflow-x:hidden}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* Nav */
+.navbar{position:fixed;top:0;width:100%;background:rgba(10,10,10,.95);
+  backdrop-filter:blur(10px);z-index:1000;padding:1rem 0}
+.nav-container{max-width:1200px;margin:0 auto;padding:0 20px;
+  display:flex;justify-content:space-between;align-items:center}
+.nav-logo h2{background:var(--grad1);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text;font-weight:700}
+.nav-menu{display:flex;list-style:none;gap:2rem}
+.nav-link{color:var(--txt1);text-decoration:none;font-weight:500;
+  transition:color .3s;position:relative}
+.nav-link:hover{color:var(--primary)}
+.nav-link::after{content:'';position:absolute;width:0;height:2px;bottom:-5px;
+  left:0;background:var(--grad1);transition:width .3s}
+.nav-link:hover::after{width:100%}
+
+/* Hamburger — pure CSS toggle */
+.hamburger{display:none;cursor:pointer;padding:4px}
+.hamburger input{display:none}
+.bar{display:block;width:25px;height:3px;background:var(--txt1);
+  margin:3px 0;transition:.3s}
+.hamburger input:checked ~ .bar:nth-child(2){opacity:0}
+.hamburger input:checked ~ .bar:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.hamburger input:checked ~ .bar:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+.hamburger input:checked ~ .nav-overlay{display:block}
+.nav-overlay{display:none;position:fixed;left:0;top:70px;width:100%;
+  background:var(--bg2);text-align:center;padding:2rem 0;z-index:999}
+.nav-overlay a{display:block;padding:.75rem;color:var(--txt1);
+  text-decoration:none;font-weight:500;font-size:1.1rem}
+.nav-overlay a:hover{color:var(--primary)}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;
+  background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 100%);
+  position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 20% 80%,rgba(0,122,255,.1) 0%,transparent 50%),
+  radial-gradient(circle at 80% 20%,rgba(255,45,146,.1) 0%,transparent 50%);pointer-events:none}
+.hero-container{max-width:1200px;margin:0 auto;padding:0 20px;
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hero-title{font-size:3.5rem;font-weight:700;margin-bottom:1rem;
+  background:var(--grad1);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text}
+.hero-subtitle{font-size:1.5rem;color:var(--txt2);margin-bottom:1.5rem;font-weight:500}
+.hero-description{font-size:1.1rem;color:var(--txt2);margin-bottom:2rem;line-height:1.8}
+.hero-stats{display:flex;gap:2rem;margin:2rem 0}
+.hero-stats .stat-item{text-align:center}
+.hero-stats .stat-item h3{font-size:2rem;font-weight:700;color:var(--primary);margin-bottom:.5rem}
+.hero-stats .stat-item p{color:var(--txt2);font-size:.9rem;margin:0}
+.hero-buttons{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;
+  transition:all .3s;display:inline-block;border:none;cursor:pointer}
+.btn-primary{background:var(--grad1);color:#fff;box-shadow:var(--shadow)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow-h)}
+.btn-secondary{background:transparent;color:var(--txt1);border:2px solid var(--bdr)}
+.btn-secondary:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-2px)}
+.hero-image{display:flex;justify-content:center;align-items:center}
+.profile-placeholder{width:300px;height:300px;border-radius:50%;background:var(--grad1);
+  display:flex;align-items:center;justify-content:center;color:#fff;
+  box-shadow:var(--shadow);animation:float 6s ease-in-out infinite}
+.profile-placeholder .icon svg{width:96px;height:96px}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+
+/* Sections */
+.section-title{font-size:2.5rem;font-weight:700;text-align:center;margin-bottom:3rem;
+  background:var(--grad1);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text}
+
+/* Skills */
+.skills{padding:100px 0;background:var(--bg1)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
+.skill-category{background:var(--bg2);padding:2rem;border-radius:12px;
+  border:1px solid var(--bdr);transition:transform .3s}
+.skill-category:hover{transform:translateY(-5px)}
+.skill-category h3{font-size:1.3rem;font-weight:600;margin-bottom:1.5rem;color:var(--txt1)}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.skill-tag{background:var(--bg3);color:var(--txt1);padding:.5rem 1rem;
+  border-radius:20px;font-size:.9rem;font-weight:500;border:1px solid var(--bdr);
+  transition:all .3s}
+.skill-tag:hover{background:var(--primary);transform:translateY(-2px)}
+
+/* Experience */
+.experience{padding:100px 0;background:var(--bg2)}
+.timeline{position:relative;max-width:800px;margin:0 auto}
+.timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;
+  width:2px;background:var(--grad1)}
+.timeline-item{position:relative;margin-bottom:3rem;padding-left:60px}
+.timeline-marker{position:absolute;left:11px;top:0;width:20px;height:20px;
+  background:var(--primary);border-radius:50%;border:4px solid var(--bg2);
+  box-shadow:0 0 0 4px var(--bg1)}
+.timeline-content{background:var(--bg3);padding:2rem;border-radius:12px;
+  border:1px solid var(--bdr);transition:transform .3s}
+.timeline-content:hover{transform:translateX(10px)}
+.timeline-header{margin-bottom:1rem}
+.timeline-header h3{font-size:1.3rem;font-weight:600;color:var(--txt1);margin-bottom:.5rem}
+.company{color:var(--primary);font-weight:500;margin-right:1rem}
+.duration{color:var(--txt2);font-size:.9rem}
+.timeline-content ul{list-style:none;padding-left:0}
+.timeline-content li{color:var(--txt2);margin-bottom:.5rem;padding-left:1.5rem;position:relative}
+.timeline-content li::before{content:'\25B8';position:absolute;left:0;
+  color:var(--primary);font-weight:700}
+
+/* Projects */
+.projects{padding:100px 0;background:var(--bg1)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2rem;margin-top:0}
+.project-card{background:var(--bg2);border-radius:12px;padding:2rem;
+  border:1px solid var(--bdr);transition:transform .3s,box-shadow .3s}
+.project-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-h)}
+.project-header{display:flex;justify-content:space-between;align-items:flex-start;
+  margin-bottom:1.5rem;gap:1rem}
+.project-header h3{color:var(--txt1);font-size:1.25rem;font-weight:600;margin:0;flex:1}
+.project-link{flex-shrink:0}
+.btn-outline{background:transparent;color:var(--primary);border:2px solid var(--primary);
+  padding:.5rem 1rem;border-radius:6px;text-decoration:none;font-size:.9rem;
+  font-weight:500;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-outline:hover{background:var(--primary);color:#fff}
+.project-card p{color:var(--txt2);line-height:1.6;margin-bottom:1rem}
+.project-tech{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}
+.tech-tag{background:var(--primary);color:#fff;padding:.25rem .75rem;
+  border-radius:20px;font-size:.8rem;font-weight:500}
+
+/* Education */
+.education{padding:100px 0;background:var(--bg1)}
+.education-grid{display:flex;flex-direction:column;gap:2rem;max-width:700px;margin:0 auto}
+.education-card{background:var(--bg2);padding:2.5rem;border-radius:12px;
+  border:1px solid var(--bdr);display:flex;align-items:center;gap:2rem;
+  transition:transform .3s}
+.education-card:hover{transform:translateY(-5px)}
+.education-icon{color:var(--primary);flex-shrink:0}
+.education-icon .icon svg{width:48px;height:48px}
+.education-content h3{font-size:1.3rem;font-weight:600;color:var(--txt1);margin-bottom:.5rem}
+.institution{color:var(--primary);font-weight:500;margin-bottom:.5rem}
+.duration{color:var(--txt2);font-size:.9rem}
+.edu-note{color:var(--txt2);font-size:.85rem;font-style:italic;margin-top:.25rem}
+
+/* Contact */
+.contact{padding:100px 0;background:var(--bg2)}
+.contact-content{max-width:700px;margin:0 auto}
+.contact-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
+.contact-item{display:flex;align-items:flex-start;gap:1rem;padding:1.5rem;
+  background:var(--bg3);border-radius:12px;border:1px solid var(--bdr);
+  transition:transform .3s;min-height:80px}
+.contact-item:hover{transform:translateY(-5px)}
+.contact-item .icon{color:var(--primary);flex-shrink:0;margin-top:.25rem}
+.contact-item .icon svg{width:24px;height:24px}
+.contact-item h4{color:var(--txt1);margin-bottom:.25rem;font-weight:600}
+.contact-item p{color:var(--txt2);word-wrap:break-word;overflow-wrap:break-word;margin:0;line-height:1.4}
+.contact-item a{color:var(--txt2);text-decoration:none;transition:color .3s}
+.contact-item a:hover{color:var(--primary)}
+
+/* Footer */
+.footer{background:var(--bg1);padding:2rem 0;text-align:center;border-top:1px solid var(--bdr)}
+.footer p{color:var(--txt2)}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--primary);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:var(--secondary)}
+
+/* Animations */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.hero-content,.skills-grid,.timeline-item,.education-card,.contact-item,.project-card{animation:fadeInUp .6s ease-out}
+
+/* Responsive */
+@media(max-width:768px){
+  .hamburger{display:block}
+  .nav-menu{display:none}
+  .hero-container{grid-template-columns:1fr;text-align:center;gap:2rem}
+  .hero-title{font-size:2.5rem}
+  .hero-subtitle{font-size:1.2rem}
+  .profile-placeholder{width:200px;height:200px}
+  .profile-placeholder .icon svg{width:64px;height:64px}
+  .skills-grid{grid-template-columns:1fr}
+  .timeline::before{left:15px}
+  .timeline-item{padding-left:50px}
+  .timeline-marker{left:6px;width:18px;height:18px}
+  .education-card{flex-direction:column;text-align:center;padding:2rem}
+  .contact-info{grid-template-columns:1fr}
+  .section-title{font-size:2rem}
+  .projects-grid{grid-template-columns:1fr}
+  .project-header{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:480px){
+  .hero-title{font-size:2rem}
+  .hero-stats{flex-direction:column;gap:1rem}
+  .hero-buttons{flex-direction:column;align-items:center}
+  .btn{width:100%;max-width:250px;text-align:center}
+  .timeline-content{padding:1.5rem}
+}
+
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-logo"><h2>Gaurav Gupta</h2></div>
+    <ul class="nav-menu">
+      <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#personal_projects" class="nav-link">Projects</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <label class="hamburger">
+      <input type="checkbox" id="nav-toggle">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <div class="nav-overlay">
+        <a href="#home" onclick="document.getElementById('nav-toggle').checked=false">Home</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#personal_projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+      </div>
+    </label>
+  </div>
+</nav>
+
+<section id="home" class="hero">
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1 class="hero-title">Gaurav Gupta</h1>
+      <h2 class="hero-subtitle">Technical Architect | iOS &amp; macOS | Application Development · Framework Engineering · Driver Development</h2>
+      <p class="hero-description">Software engineer/architect with experience spanning telecom dataplane development, systems/application support, QA automation, and Apple-platform engineering. Recent focus is on architecting and developing iOS/watchOS/tvOS/macOS apps, SDKs, frameworks, reusable components, CI/CD pipelines, and release workflows. Earlier experience includes Intel IXP-based telecom development, Linux/Unix systems administration, and VMware-oriented test automation.</p>
+      <div class="hero-stats">
+        <div class="stat-item"><h3>22+</h3><p>Years Experience</p></div>
+        <div class="stat-item"><h3>23+</h3><p>Projects</p></div>
+        <div class="stat-item"><h3>158+</h3><p>Technologies</p></div>
+      </div>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Get in Touch</a>
+        <a href="#experience" class="btn btn-secondary">View Experience</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="profile-placeholder"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="skills">
+  <div class="container">
+    <h2 class="section-title">Skills &amp; Expertise</h2>
+    <div class="skills-grid">
+    <div class="skill-category">
+      <h3>Apple Platforms &amp; Frameworks</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">iOS</span>
+        <span class="skill-tag">iPadOS</span>
+        <span class="skill-tag">watchOS</span>
+        <span class="skill-tag">tvOS</span>
+        <span class="skill-tag">macOS</span>
+        <span class="skill-tag">UIKit</span>
+        <span class="skill-tag">Foundation</span>
+        <span class="skill-tag">Core Data</span>
+        <span class="skill-tag">Core Graphics</span>
+        <span class="skill-tag">Core Bluetooth</span>
+        <span class="skill-tag">Core NFC</span>
+        <span class="skill-tag">Core Location</span>
+        <span class="skill-tag">Core Animation</span>
+        <span class="skill-tag">Local Authentication</span>
+        <span class="skill-tag">AVFoundation</span>
+        <span class="skill-tag">SwiftUI</span>
+        <span class="skill-tag">UserNotifications</span>
+        <span class="skill-tag">Contacts</span>
+        <span class="skill-tag">EventKit</span>
+        <span class="skill-tag">AppKit</span>
+        <span class="skill-tag">Combine</span>
+        <span class="skill-tag">DriverKit</span>
+        <span class="skill-tag">IOKit</span>
+        <span class="skill-tag">Authentication Services</span>
+        <span class="skill-tag">Security / Keychain Services</span>
+        <span class="skill-tag">CryptoKit</span>
+        <span class="skill-tag">External Accessory (MFi)</span>
+        <span class="skill-tag">Core Telephony</span>
+        <span class="skill-tag">XCTest</span>
+        <span class="skill-tag">XCUITest</span>
+        <span class="skill-tag">External Accessory</span>
+        <span class="skill-tag">GCD (Grand Central Dispatch)</span>
+        <span class="skill-tag">QuartzCore</span>
+        <span class="skill-tag">StoreKit (In-App Purchase)</span>
+        <span class="skill-tag">TVML</span>
+        <span class="skill-tag">EventsUI</span>
+        <span class="skill-tag">Firebase RemoteConfig</span>
+        <span class="skill-tag">Firebase Storage</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <h3>Languages</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Swift</span>
+        <span class="skill-tag">Objective-C</span>
+        <span class="skill-tag">Golang</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">C++</span>
+        <span class="skill-tag">C</span>
+        <span class="skill-tag">Shell</span>
+        <span class="skill-tag">Perl</span>
+        <span class="skill-tag">Rust</span>
+        <span class="skill-tag">Intel IXP proprietary assembly</span>
+        <span class="skill-tag">LISP</span>
+        <span class="skill-tag">VHDL</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <h3>Architecture &amp; Patterns</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">SDK design</span>
+        <span class="skill-tag">Framework architecture</span>
+        <span class="skill-tag">Modularization</span>
+        <span class="skill-tag">Dynamic frameworks</span>
+        <span class="skill-tag">Static libraries</span>
+        <span class="skill-tag">Objective-C to Swift migration</span>
+        <span class="skill-tag">Whitelabel / multi-target apps</span>
+        <span class="skill-tag">Proof-of-concept development</span>
+        <span class="skill-tag">Technical mentoring</span>
+        <span class="skill-tag">Cross-functional architecture leadership</span>
+        <span class="skill-tag">MVVM</span>
+        <span class="skill-tag">MVVM with Coordinators</span>
+        <span class="skill-tag">MVC</span>
+        <span class="skill-tag">Repository pattern</span>
+        <span class="skill-tag">Swift Generics for type-safe abstractions</span>
+        <span class="skill-tag">XCFramework generation</span>
+        <span class="skill-tag">Swift Concurrency (async/await, actors)</span>
+        <span class="skill-tag">MVP</span>
+        <span class="skill-tag">Custom MV* patterns</span>
+        <span class="skill-tag">Whitelabeling / single-codebase multi-target</span>
+        <span class="skill-tag">Pod generation</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <h3>Tools, CI/CD &amp; SCM</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Fastlane</span>
+        <span class="skill-tag">Bitrise</span>
+        <span class="skill-tag">CircleCI</span>
+        <span class="skill-tag">Nevercode</span>
+        <span class="skill-tag">Jenkins</span>
+        <span class="skill-tag">Buddy</span>
+        <span class="skill-tag">TestFlight</span>
+        <span class="skill-tag">Custom shell scripting</span>
+        <span class="skill-tag">App Store release management</span>
+        <span class="skill-tag">Apple Developer Portal administration</span>
+        <span class="skill-tag">GitHub Actions</span>
+        <span class="skill-tag">XCFramework shell scripting</span>
+        <span class="skill-tag">DMG packaging</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">GitHub</span>
+        <span class="skill-tag">GitLab</span>
+        <span class="skill-tag">Bitbucket</span>
+        <span class="skill-tag">SVN</span>
+        <span class="skill-tag">CVS</span>
+        <span class="skill-tag">ClearCase</span>
+        <span class="skill-tag">JIRA</span>
+        <span class="skill-tag">Confluence</span>
+        <span class="skill-tag">Perforce</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <h3>Security &amp; Testing</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Face ID / Touch ID (Local Authentication)</span>
+        <span class="skill-tag">iOS Keychain Services</span>
+        <span class="skill-tag">Biometric authentication</span>
+        <span class="skill-tag">Code signing &amp; provisioning</span>
+        <span class="skill-tag">App sandboxing</span>
+        <span class="skill-tag">Encryption / decryption (CryptoKit, CommonCrypto)</span>
+        <span class="skill-tag">OAuth token handling</span>
+        <span class="skill-tag">XCTest</span>
+        <span class="skill-tag">XCUITest</span>
+        <span class="skill-tag">UI Automation testing</span>
+        <span class="skill-tag">SDK stability testing across iOS versions</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <h3>Backend &amp; Data</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">REST API integration</span>
+        <span class="skill-tag">Firebase FCM</span>
+        <span class="skill-tag">Firebase Realtime Database</span>
+        <span class="skill-tag">Firebase Crashlytics</span>
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">Analytics / event reporting</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <h3>Systems &amp; Low-level</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Linux/Unix systems administration</span>
+        <span class="skill-tag">Sun Solaris</span>
+        <span class="skill-tag">Apache</span>
+        <span class="skill-tag">VMware functional verification</span>
+        <span class="skill-tag">RHEL</span>
+        <span class="skill-tag">Ubuntu</span>
+        <span class="skill-tag">CentOS</span>
+        <span class="skill-tag">Fedora</span>
+        <span class="skill-tag">Debian</span>
+        <span class="skill-tag">WiMAX</span>
+        <span class="skill-tag">WCDMA Node-B</span>
+        <span class="skill-tag">Intel IXP2400/2350</span>
+        <span class="skill-tag">Dataplane / fastpath development</span>
+        <span class="skill-tag">RFC 2507</span>
+        <span class="skill-tag">RFC 2508</span>
+        <span class="skill-tag">L2/L3 networking</span>
+        <span class="skill-tag">SmartBits</span>
+        <span class="skill-tag">Lauterbach</span>
+        <span class="skill-tag">DriverKit (macOS user-space drivers)</span>
+        <span class="skill-tag">IOKit</span>
+        <span class="skill-tag">Network packet inspection</span>
+        <span class="skill-tag">Socket-level programming</span>
+        <span class="skill-tag">Intel IXP microcode</span>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="experience">
+  <div class="container">
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <h3>Technical Consultant</h3>
+          <span class="company">Actiknow Consulting Pvt. Ltd.</span>
+          <span class="duration">MAY 2023 - Present</span>
+        </div>
+        <ul>
+          <li>Developed a production-grade Swift SDK from the ground up, establishing interoperability layer between new Swift codebase and existing Objective-C modules via bridging and wrapper architecture</li>
+          <li>Led Swift concurrency modernisation initiative alongside 2 engineers, migrating legacy codebase to Swift structured concurrency model (async/await, actors)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <h3>Technical Architect</h3>
+          <span class="company">OSW Technologies</span>
+          <span class="duration">JUN 2021 - APR 2023</span>
+        </div>
+        <ul>
+          <li>Architected base framework for a family of reusable frameworks</li>
+          <li>Worked with backend team on API payload design</li>
+          <li>Explained and standardized usage of APIs including UserNotifications, CryptoKit, and Core Telephony</li>
+          <li>Developed custom shell script to generate fat frameworks for simulator and device</li>
+          <li>Managed JIRA workflow and technical documentation</li>
+          <li>Built analytics/event-reporting and remote-notifications frameworks tailored to Firebase FCM</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <h3>Technical Architect</h3>
+          <span class="company">Freelance Engagement</span>
+          <span class="duration">JUN 2021 - SEP 2021</span>
+        </div>
+        <ul>
+          <li>Bug fixes and release management for a SwiftUI App Clip</li>
+          <li>Architected and developed native and Flutter PoCs</li>
+          <li>Set up CI/CD workflows</li>
+          <li>Worked with entrepreneur/stakeholders on solution direction</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <h3>Technical Architect</h3>
+          <span class="company">Novelty Data Solutions LLP</span>
+          <span class="duration">APR 2021 - JUN 2021</span>
+        </div>
+        <ul>
+          <li>Technically led a team of 8 engineers</li>
+          <li>Worked with QA, UI/UX, marketing, product owners, and technical managers</li>
+          <li>Supported iOS/tvOS product work</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <h3>Technical Architect</h3>
+          <span class="company">HARMAN India</span>
+          <span class="duration">FEB 2020 - APR 2021</span>
+        </div>
+        <ul>
+          <li>Member of framework team releasing frameworks consumed across in-house apps</li>
+          <li>Created remote-notifications framework integrating with Firebase FCM</li>
+          <li>Developed feature to schedule local notifications on receiving remote notifications</li>
+          <li>Interfaced with principal architect, product owner, and engineering manager</li>
+          <li>Led and mentored 2 junior iOS developers</li>
+          <li>Worked on Xamarin Native healthcare application for a US client</li>
+          <li>Developed patient goals and progress modules</li>
+          <li>Improved accessibility to facilitate automation-test generation</li>
+          <li>Contributed to code reviews and demo-application work in some resume versions</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <h3>Technical Architect / iOS Developer</h3>
+          <span class="company">Freelance Engagement</span>
+          <span class="duration">JAN 2020 - FEB 2020</span>
+        </div>
+        <ul>
+          <li>Architected and developed apps/PoCs from the ground up in iOS/watchOS</li>
+          <li>Set up CI/CD environment</li>
+          <li>Built a Golang PoC to facilitate kickoff for a SwiftUI iOS application</li>
+          <li>Worked remotely with junior iOS developers</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <h3>Technical Lead</h3>
+          <span class="company">Invaria Technologies</span>
+          <span class="duration">JUN 2019 - DEC 2019</span>
+        </div>
+        <ul>
+          <li>Led a team of 2 iOS developers</li>
+          <li>Worked with QA, firmware, server-side, and principal engineer in the USA</li>
+          <li>Contributed to architecture overhaul</li>
+          <li>Designed generic local-persistence component/framework</li>
+          <li>Designed sync flow between Firebase Realtime DB and local persistence on fresh install</li>
+          <li>Worked closely with automation team to facilitate full UI automation testing</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <h3>iOS Consultant / Developer / Trainer</h3>
+          <span class="company">Freelance Engagement</span>
+          <span class="duration">MAY 2016 - JUN 2019</span>
+        </div>
+        <ul>
+          <li>Worked on roughly 10-15 projects across multiple domains</li>
+          <li>Fixed issues and delivered new features</li>
+          <li>Developed PoCs for feasibility analysis</li>
+          <li>Worked on Objective-C to Swift migrations</li>
+          <li>Modularized applications into frameworks</li>
+          <li>Worked on static libraries, dynamic frameworks, pod generation, and multi-target setups</li>
+          <li>Handled training/consulting in some engagements</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <h3>Technical Lead</h3>
+          <span class="company">Mindteck India Limited</span>
+          <span class="duration">AUG 2012 - MAY 2016</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <h3>iOS Consultant / Developer / Trainer</h3>
+          <span class="company">Freelance Engagement</span>
+          <span class="duration">MAR 2012 - AUG 2012</span>
+        </div>
+        <ul>
+          <li>Worked on multiple mobile applications for a single client in banking domain</li>
+          <li>Issue fixing and bug resolution</li>
+          <li>Feature: photo management — upload via web interface or camera roll</li>
+          <li>Developed 3 PoCs specifically for iPad (version 1 &amp; 2)</li>
+          <li>Led/oversaw development of 5 team members as Tech Lead</li>
+          <li>Also provided iOS training/freelance consulting</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <h3>Technical Lead</h3>
+          <span class="company">Emids</span>
+          <span class="duration">AUG 2011 - MAR 2012</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <h3>Technical Lead</h3>
+          <span class="company">Wipro Technologies</span>
+          <span class="duration">DEC 2010 - JUL 2011</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <h3>Quality Assurance Intern - Hosted Functional Verification Team</h3>
+          <span class="company">VMware Inc.</span>
+          <span class="duration">MAY 2008 - AUG 2008</span>
+        </div>
+        <ul>
+          <li>Developed Perl/Shell automation tool for end-to-end functional testing workflow</li>
+          <li>Tool features: automated build download with nomenclature-change resilience, installation on multiple Linux environments, configurable test execution (tests, iterations, log preferences), log generation, email-based result reporting</li>
+          <li>Planned trigger mechanism via text file input and email-based test initiation</li>
+          <li>Tested on RHEL 5.4 and multiple Linux flavours</li>
+          <li>Member of Hosted Functional Verification Team: verified hypervisor monitor, virtual networking, virtual hardware/devices, VM host/guest OS integration</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <h3>Operations &amp; Systems Assistant</h3>
+          <span class="company">University of Massachusetts Dartmouth</span>
+          <span class="duration">SEP 2007 - FEB 2010</span>
+        </div>
+        <ul>
+          <li>Application Administrator/Support specialist for LUNA — applying updates, troubleshooting server/client issues, coordinating with vendor for new features</li>
+          <li>Brought up LUNA web interface and integrated domain login for students, faculty, and staff</li>
+          <li>Tested and installed Perdition mail retrieval proxy for campus-wide email traffic consolidation</li>
+          <li>Prepared detailed datacenter inventory for systematic shutdown procedures</li>
+          <li>Configured Apache server for LUNA web interface on Sun Solaris environment</li>
+          <li>Gained hands-on data center operations experience</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <h3>Senior Software Engineer</h3>
+          <span class="company">Wipro Technologies</span>
+          <span class="duration">MAR 2004 - JUN 2007</span>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section id="personal_projects" class="projects">
+  <div class="container">
+    <h2 class="section-title">Personal Projects</h2>
+    <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-header">
+        <h3>macOS Network Driver — DriverKit</h3>
+      <div class="project-link"><a href="https://github.com/ggthedev" class="btn-outline" target="_blank" rel="noopener"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></span> GitHub</a></div>
+      </div>
+      <p>Developed a macOS network driver extension using DriverKit, implementing real-time packet inspection with source/destination IP logging — demonstrating driver lifecycle management, entitlements, and user-space/kernel boundary handling.</p>
+      <div class="project-tech">
+        <span class="tech-tag">Swift</span>
+        <span class="tech-tag">DriverKit</span>
+        <span class="tech-tag">IOKit</span>
+        <span class="tech-tag">Xcode</span>
+        <span class="tech-tag">LLDB</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-header">
+        <h3>BrewExplorer — Native macOS Application</h3>
+      <div class="project-link"><a href="https://github.com/ggthedev/brew-engine" class="btn-outline" target="_blank" rel="noopener"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></span> GitHub</a></div>
+      </div>
+      <p>Native macOS Homebrew package manager explorer built with AppKit, powered by a Golang proxy engine handling all brew operations via IPC. DMG packaged with planned Homebrew distribution.</p>
+      <div class="project-tech">
+        <span class="tech-tag">Swift</span>
+        <span class="tech-tag">Golang</span>
+        <span class="tech-tag">AppKit</span>
+        <span class="tech-tag">Shell scripting</span>
+        <span class="tech-tag">DMG packaging</span>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section id="education" class="education">
+  <div class="container">
+    <h2 class="section-title">Education</h2>
+    <div class="education-grid">
+    <div class="education-card">
+      <div class="education-icon"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg></span></div>
+      <div class="education-content">
+        <h3>Master of Science — Computer Engineering</h3>
+        <p class="institution">University of Massachusetts Dartmouth</p>
+        <span class="duration"></span>
+        <p class="edu-note">Coursework completed</p>
+      </div>
+    </div>
+    <div class="education-card">
+      <div class="education-icon"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg></span></div>
+      <div class="education-content">
+        <h3>Bachelor of Technology — Electronics and Communication Engineering</h3>
+        <p class="institution">Bharati Vidyapeeth College of Engineering (Guru Gobind Singh Indraprastha University)</p>
+        <span class="duration">2003</span>
+        
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <h2 class="section-title">Get in Touch</h2>
+    <div class="contact-content">
+      <div class="contact-info">
+      <div class="contact-item">
+        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+        <div><h4>Email</h4><p><a href="mailto:reachgauravguptaforios@gmail.com">reachgauravguptaforios@gmail.com</a></p></div>
+      </div>
+      <div class="contact-item">
+        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        <div><h4>Phone</h4><p>+919205701581</p></div>
+      </div>
+      <div class="contact-item">
+        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <div><h4>Location</h4><p>Bengaluru, India</p></div>
+      </div>
+      <div class="contact-item">
+        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
+        <div><h4>LinkedIn</h4><p><a href="https://www.linkedin.com/in/ggupta1981/" target="_blank" rel="noopener">https://www.linkedin.com/in/ggupta1981/</a></p></div>
+      </div>
+      <div class="contact-item">
+        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+        <div><h4>Portfolio</h4><p><a href="https://ggthedev.github.io/developergauravgupta/" target="_blank" rel="noopener">https://ggthedev.github.io/developergauravgupta/</a></p></div>
+      </div>
+      <div class="contact-item">
+        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M15.725 0l-1.72 1.277 6.39 8.588 1.72-1.277L15.725 0zm-3.94 3.418l-1.369 1.644 8.225 6.85 1.369-1.644-8.225-6.85zm-3.15 4.465l-.905 1.94 9.702 4.517.904-1.94-9.701-4.517zm-1.85 4.86l-.44 2.093 10.473 2.201.44-2.092-10.473-2.203zM1.89 15.47V24h19.19v-8.53h-2.133v6.397H4.021v-6.396H1.89zm4.265 2.133v2.13h10.66v-2.13H6.154z"/></svg></span>
+        <div><h4>Stack Overflow</h4><p><a href="https://stackoverflow.com/story/gauravgupta1981" target="_blank" rel="noopener">Profile</a></p></div>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2026 Gaurav Gupta. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>

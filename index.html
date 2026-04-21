@@ -2,793 +2,1318 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Gaurav Gupta — Technical Architect (iOS) / Apple Platform Engineer / SDK &amp; Framework Engineer</title>
-<meta name="description" content="Software engineer/architect with experience spanning telecom dataplane development, systems/application support, QA automation, and Apple-platform engineering. Recent focus is on architecting and deve">
-<meta name="author" content="Gaurav Gupta">
-<meta property="og:title" content="Gaurav Gupta — Technical Architect (iOS) / Apple Platform Engineer / SDK &amp; Framework Engineer">
-<meta property="og:description" content="Software engineer/architect with experience spanning telecom dataplane development, systems/application support, QA automation, and Apple-platform engineering. Recent focus is on architecting and deve">
-<meta property="og:url" content="https://ggthedev.github.io/developergauravgupta/">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gaurav Gupta — Technical Architect (iOS) / Apple Platform Engineer / SDK &amp; Framework Engineer">
-<meta name="twitter:description" content="Software engineer/architect with experience spanning telecom dataplane development, systems/application support, QA automation, and Apple-platform engineering. Recent focus is on architecting and deve">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaurav Gupta — Software Engineer · Technical Architect · 20+ Years</title>
+<meta name="description" content="Software Engineer and Technical Architect with 20+ years building software at every scale — iOS/macOS platforms, SDK &amp; framework engineering, and backend services.">
+<meta name="theme-color" content="#0a0a0a">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+
+/* ── Reset & Base ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --primary:#007AFF;--secondary:#5856D6;--accent:#FF2D92;
-  --txt1:#FFF;--txt2:#B0B0B0;
-  --bg1:#0A0A0A;--bg2:#1A1A1A;--bg3:#2A2A2A;--bdr:#333;
-  --grad1:linear-gradient(135deg,#007AFF 0%,#5856D6 100%);
-  --grad2:linear-gradient(135deg,#FF2D92 0%,#FF6B35 100%);
-  --shadow:0 10px 30px rgba(0,0,0,.3);
-  --shadow-h:0 20px 40px rgba(0,0,0,.4);
+  --bg:#0a0a0a;--bg2:#111;--bg3:#1a1a1a;--bg4:#222;
+  --fg:#e8e4df;--fg2:#a09a92;--fg3:#6b6560;
+  --accent:#c9a227;--accent2:#e8c547;--accent-dim:#8a6e14;
+  --blue:#4a9ead;--green:#5a9a6a;--red:#b85450;
+  --font-display:'Georgia','Times New Roman',serif;
+  --font-body:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  --font-mono:'SF Mono','Fira Code','Consolas',monospace;
+  --max-w:900px;
+  --space-xs:0.25rem;--space-sm:0.5rem;--space-md:1rem;--space-lg:2rem;--space-xl:3rem;
 }
-html{scroll-behavior:smooth}
-body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-  line-height:1.6;color:var(--txt1);background:var(--bg1);overflow-x:hidden}
-.container{max-width:1200px;margin:0 auto;padding:0 20px}
+html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none;transition:color .15s}
+a:hover{color:var(--accent2)}
+img{max-width:100%;display:block}
 
-/* Nav */
-.navbar{position:fixed;top:0;width:100%;background:rgba(10,10,10,.95);
-  backdrop-filter:blur(10px);z-index:1000;padding:1rem 0}
-.nav-container{max-width:1200px;margin:0 auto;padding:0 20px;
-  display:flex;justify-content:space-between;align-items:center}
-.nav-logo h2{background:var(--grad1);-webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;background-clip:text;font-weight:700}
-.nav-menu{display:flex;list-style:none;gap:2rem}
-.nav-link{color:var(--txt1);text-decoration:none;font-weight:500;
-  transition:color .3s;position:relative}
-.nav-link:hover{color:var(--primary)}
-.nav-link::after{content:'';position:absolute;width:0;height:2px;bottom:-5px;
-  left:0;background:var(--grad1);transition:width .3s}
-.nav-link:hover::after{width:100%}
+/* ── Layout ── */
+.container{max-width:var(--max-w);margin:0 auto;padding:0 var(--space-md)}
+section{padding:var(--space-xl) 0;border-bottom:1px solid var(--bg3)}
+section:last-of-type{border-bottom:none}
 
-/* Hamburger — pure CSS toggle */
-.hamburger{display:none;cursor:pointer;padding:4px}
-.hamburger input{display:none}
-.bar{display:block;width:25px;height:3px;background:var(--txt1);
-  margin:3px 0;transition:.3s}
-.hamburger input:checked ~ .bar:nth-child(2){opacity:0}
-.hamburger input:checked ~ .bar:nth-child(1){transform:translateY(9px) rotate(45deg)}
-.hamburger input:checked ~ .bar:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
-.hamburger input:checked ~ .nav-overlay{display:block}
-.nav-overlay{display:none;position:fixed;left:0;top:70px;width:100%;
-  background:var(--bg2);text-align:center;padding:2rem 0;z-index:999}
-.nav-overlay a{display:block;padding:.75rem;color:var(--txt1);
-  text-decoration:none;font-weight:500;font-size:1.1rem}
-.nav-overlay a:hover{color:var(--primary)}
+/* ── Nav ── */
+nav{position:sticky;top:0;z-index:100;background:rgba(10,10,10,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--bg3);padding:var(--space-sm) 0}
+nav .container{display:flex;align-items:center;justify-content:space-between;gap:var(--space-sm)}
+.nav-name{font-family:var(--font-display);font-size:1.05rem;color:var(--fg);font-weight:700;letter-spacing:-.01em;white-space:nowrap}
+.nav-links{display:flex;gap:var(--space-xs);flex-wrap:wrap;justify-content:flex-end}
+.nav-links a{font-size:.72rem;color:var(--fg3);padding:3px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;transition:all .15s}
+.nav-links a:hover,.nav-links a:focus{color:var(--accent);background:var(--bg3)}
 
-/* Hero */
-.hero{min-height:100vh;display:flex;align-items:center;
-  background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 100%);
-  position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at 20% 80%,rgba(0,122,255,.1) 0%,transparent 50%),
-  radial-gradient(circle at 80% 20%,rgba(255,45,146,.1) 0%,transparent 50%);pointer-events:none}
-.hero-container{max-width:1200px;margin:0 auto;padding:0 20px;
-  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-.hero-title{font-size:3.5rem;font-weight:700;margin-bottom:1rem;
-  background:var(--grad1);-webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;background-clip:text}
-.hero-subtitle{font-size:1.5rem;color:var(--txt2);margin-bottom:1.5rem;font-weight:500}
-.hero-description{font-size:1.1rem;color:var(--txt2);margin-bottom:2rem;line-height:1.8}
-.hero-stats{display:flex;gap:2rem;margin:2rem 0}
-.hero-stats .stat-item{text-align:center}
-.hero-stats .stat-item h3{font-size:2rem;font-weight:700;color:var(--primary);margin-bottom:.5rem}
-.hero-stats .stat-item p{color:var(--txt2);font-size:.9rem;margin:0}
-.hero-buttons{display:flex;gap:1rem;flex-wrap:wrap}
-.btn{padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;
-  transition:all .3s;display:inline-block;border:none;cursor:pointer}
-.btn-primary{background:var(--grad1);color:#fff;box-shadow:var(--shadow)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow-h)}
-.btn-secondary{background:transparent;color:var(--txt1);border:2px solid var(--bdr)}
-.btn-secondary:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-2px)}
-.hero-image{display:flex;justify-content:center;align-items:center}
-.profile-placeholder{width:300px;height:300px;border-radius:50%;background:var(--grad1);
-  display:flex;align-items:center;justify-content:center;color:#fff;
-  box-shadow:var(--shadow);animation:float 6s ease-in-out infinite}
-.profile-placeholder .icon svg{width:96px;height:96px}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+/* ── Hero ── */
+.hero{padding:var(--space-xl) 0 var(--space-lg);text-align:left}
+.hero-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin-bottom:var(--space-sm);font-weight:600}
+.hero h1{font-family:var(--font-display);font-size:clamp(1.8rem,5vw,3rem);line-height:1.15;color:var(--fg);margin-bottom:var(--space-md);font-weight:400}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-sub{font-size:1rem;color:var(--fg2);max-width:640px;line-height:1.7;margin-bottom:var(--space-lg)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:var(--space-md);font-size:.82rem;color:var(--fg3)}
+.hero-meta a{color:var(--fg2)}
+.hero-meta span::before{content:'';display:inline-block;width:5px;height:5px;background:var(--accent-dim);border-radius:50%;margin-right:8px;vertical-align:middle}
 
-/* Sections */
-.section-title{font-size:2.5rem;font-weight:700;text-align:center;margin-bottom:3rem;
-  background:var(--grad1);-webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;background-clip:text}
+/* ── Section headings ── */
+.s-head{margin-bottom:var(--space-lg)}
+.s-head h2{font-family:var(--font-display);font-size:1.5rem;font-weight:400;color:var(--fg);margin-bottom:4px}
+.s-head p{font-size:.82rem;color:var(--fg3)}
 
-/* Skills */
-.skills{padding:100px 0;background:var(--bg1)}
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
-.skill-category{background:var(--bg2);padding:2rem;border-radius:12px;
-  border:1px solid var(--bdr);transition:transform .3s}
-.skill-category:hover{transform:translateY(-5px)}
-.skill-category h3{font-size:1.3rem;font-weight:600;margin-bottom:1.5rem;color:var(--txt1)}
-.skill-tags{display:flex;flex-wrap:wrap;gap:.5rem}
-.skill-tag{background:var(--bg3);color:var(--txt1);padding:.5rem 1rem;
-  border-radius:20px;font-size:.9rem;font-weight:500;border:1px solid var(--bdr);
-  transition:all .3s}
-.skill-tag:hover{background:var(--primary);transform:translateY(-2px)}
+/* ── Skills ── */
+.skill-group{margin-bottom:var(--space-lg)}
+.skill-group h3{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:var(--space-sm);font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-size:.75rem;padding:4px 10px;background:var(--bg3);color:var(--fg2);border-radius:3px;border:1px solid var(--bg4);line-height:1.4}
+.tag.primary{border-color:var(--accent-dim);color:var(--accent2);background:rgba(201,162,39,.08)}
 
-/* Experience */
-.experience{padding:100px 0;background:var(--bg2)}
-.timeline{position:relative;max-width:800px;margin:0 auto}
-.timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;
-  width:2px;background:var(--grad1)}
-.timeline-item{position:relative;margin-bottom:3rem;padding-left:60px}
-.timeline-marker{position:absolute;left:11px;top:0;width:20px;height:20px;
-  background:var(--primary);border-radius:50%;border:4px solid var(--bg2);
-  box-shadow:0 0 0 4px var(--bg1)}
-.timeline-content{background:var(--bg3);padding:2rem;border-radius:12px;
-  border:1px solid var(--bdr);transition:transform .3s}
-.timeline-content:hover{transform:translateX(10px)}
-.timeline-header{margin-bottom:1rem}
-.timeline-header h3{font-size:1.3rem;font-weight:600;color:var(--txt1);margin-bottom:.5rem}
-.company{color:var(--primary);font-weight:500;margin-right:1rem}
-.duration{color:var(--txt2);font-size:.9rem}
-.timeline-content ul{list-style:none;padding-left:0}
-.timeline-content li{color:var(--txt2);margin-bottom:.5rem;padding-left:1.5rem;position:relative}
-.timeline-content li::before{content:'\25B8';position:absolute;left:0;
-  color:var(--primary);font-weight:700}
+/* ── Timeline ── */
+.timeline{position:relative;padding-left:20px}
+.timeline::before{content:'';position:absolute;left:3px;top:8px;bottom:0;width:1px;background:var(--bg4)}
+.t-entry{position:relative;margin-bottom:var(--space-xl);padding-left:var(--space-md)}
+.t-entry::before{content:'';position:absolute;left:-20px;top:8px;width:7px;height:7px;background:var(--bg4);border:2px solid var(--bg);border-radius:50%;z-index:1}
+.t-entry.current::before{background:var(--accent);box-shadow:0 0 0 3px rgba(201,162,39,.2)}
+.t-dates{font-size:.72rem;color:var(--fg3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.t-title{font-size:1.05rem;font-weight:600;color:var(--fg);margin-bottom:2px}
+.t-org{font-size:.88rem;color:var(--accent);margin-bottom:var(--space-sm)}
+.t-summary{font-size:.88rem;color:var(--fg2);margin-bottom:var(--space-sm);line-height:1.6}
+.t-contribs{list-style:none;padding:0;margin-bottom:var(--space-sm)}
+.t-contribs li{font-size:.82rem;color:var(--fg2);padding:3px 0 3px 16px;position:relative;line-height:1.55}
+.t-contribs li::before{content:'›';position:absolute;left:0;color:var(--accent-dim);font-weight:700}
+.t-tech{font-size:.72rem;color:var(--fg3);line-height:1.6}
+.t-tech strong{color:var(--fg3);font-weight:600}
 
-/* Projects */
-.projects{padding:100px 0;background:var(--bg1)}
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2rem;margin-top:0}
-.project-card{background:var(--bg2);border-radius:12px;padding:2rem;
-  border:1px solid var(--bdr);transition:transform .3s,box-shadow .3s}
-.project-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-h)}
-.project-header{display:flex;justify-content:space-between;align-items:flex-start;
-  margin-bottom:1.5rem;gap:1rem}
-.project-header h3{color:var(--txt1);font-size:1.25rem;font-weight:600;margin:0;flex:1}
-.project-link{flex-shrink:0}
-.btn-outline{background:transparent;color:var(--primary);border:2px solid var(--primary);
-  padding:.5rem 1rem;border-radius:6px;text-decoration:none;font-size:.9rem;
-  font-weight:500;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem}
-.btn-outline:hover{background:var(--primary);color:#fff}
-.project-card p{color:var(--txt2);line-height:1.6;margin-bottom:1rem}
-.project-tech{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}
-.tech-tag{background:var(--primary);color:#fff;padding:.25rem .75rem;
-  border-radius:20px;font-size:.8rem;font-weight:500}
+/* ── Projects (within experience) ── */
+.proj-card{background:var(--bg2);border:1px solid var(--bg3);border-radius:4px;padding:var(--space-md);margin-top:var(--space-sm);margin-bottom:var(--space-sm)}
+.proj-card h4{font-size:.88rem;font-weight:600;color:var(--fg);margin-bottom:4px}
+.proj-card .proj-type{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--fg3);margin-bottom:var(--space-sm)}
+.proj-card p{font-size:.82rem;color:var(--fg2);line-height:1.55;margin-bottom:var(--space-sm)}
 
-/* Education */
-.education{padding:100px 0;background:var(--bg1)}
-.education-grid{display:flex;flex-direction:column;gap:2rem;max-width:700px;margin:0 auto}
-.education-card{background:var(--bg2);padding:2.5rem;border-radius:12px;
-  border:1px solid var(--bdr);display:flex;align-items:center;gap:2rem;
-  transition:transform .3s}
-.education-card:hover{transform:translateY(-5px)}
-.education-icon{color:var(--primary);flex-shrink:0}
-.education-icon .icon svg{width:48px;height:48px}
-.education-content h3{font-size:1.3rem;font-weight:600;color:var(--txt1);margin-bottom:.5rem}
-.institution{color:var(--primary);font-weight:500;margin-bottom:.5rem}
-.duration{color:var(--txt2);font-size:.9rem}
-.edu-note{color:var(--txt2);font-size:.85rem;font-style:italic;margin-top:.25rem}
+/* ── AI Tools (within project card) ── */
+.proj-ai{margin-top:var(--space-sm);margin-bottom:var(--space-sm)}
+.proj-ai-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--fg3);margin-bottom:4px;font-weight:600}
+.proj-ai .tags{margin-bottom:var(--space-xs)}
+.proj-ai-usage{font-size:.78rem;color:var(--fg2);line-height:1.5;font-style:italic;margin-top:4px}
 
-/* Contact */
-.contact{padding:100px 0;background:var(--bg2)}
-.contact-content{max-width:700px;margin:0 auto}
-.contact-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.contact-item{display:flex;align-items:flex-start;gap:1rem;padding:1.5rem;
-  background:var(--bg3);border-radius:12px;border:1px solid var(--bdr);
-  transition:transform .3s;min-height:80px}
-.contact-item:hover{transform:translateY(-5px)}
-.contact-item .icon{color:var(--primary);flex-shrink:0;margin-top:.25rem}
-.contact-item .icon svg{width:24px;height:24px}
-.contact-item h4{color:var(--txt1);margin-bottom:.25rem;font-weight:600}
-.contact-item p{color:var(--txt2);word-wrap:break-word;overflow-wrap:break-word;margin:0;line-height:1.4}
-.contact-item a{color:var(--txt2);text-decoration:none;transition:color .3s}
-.contact-item a:hover{color:var(--primary)}
+/* ── Personal Projects ── */
+.pp-grid{display:grid;gap:var(--space-md)}
+.pp-card{background:var(--bg2);border:1px solid var(--bg3);border-radius:4px;padding:var(--space-lg) var(--space-md);position:relative;overflow:hidden}
+.pp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--blue))}
+.pp-card h3{font-size:1.05rem;font-weight:600;color:var(--fg);margin-bottom:var(--space-xs)}
+.pp-card .pp-sub{font-size:.78rem;color:var(--fg3);margin-bottom:var(--space-sm)}
+.pp-card p{font-size:.85rem;color:var(--fg2);line-height:1.6;margin-bottom:var(--space-sm)}
+.pp-card .pp-link{font-size:.78rem;font-weight:600;color:var(--accent)}
 
-/* Footer */
-.footer{background:var(--bg1);padding:2rem 0;text-align:center;border-top:1px solid var(--bdr)}
-.footer p{color:var(--txt2)}
+/* ── Education ── */
+.edu-item{margin-bottom:var(--space-lg)}
+.edu-item h3{font-size:1rem;font-weight:600;color:var(--fg);margin-bottom:2px}
+.edu-item .edu-inst{font-size:.88rem;color:var(--accent);margin-bottom:2px}
+.edu-item .edu-meta{font-size:.78rem;color:var(--fg3)}
 
-/* Scrollbar */
-::-webkit-scrollbar{width:8px}
-::-webkit-scrollbar-track{background:var(--bg2)}
-::-webkit-scrollbar-thumb{background:var(--primary);border-radius:4px}
-::-webkit-scrollbar-thumb:hover{background:var(--secondary)}
+/* ── Domains ── */
+.domain-bar{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.domain-chip{font-size:.78rem;padding:6px 14px;background:var(--bg2);border:1px solid var(--bg3);border-radius:20px;color:var(--fg2)}
 
-/* Animations */
-@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.hero-content,.skills-grid,.timeline-item,.education-card,.contact-item,.project-card{animation:fadeInUp .6s ease-out}
+/* ── Contact / Footer ── */
+.contact-grid{display:grid;gap:var(--space-sm)}
+.contact-item{font-size:.88rem;color:var(--fg2)}
+.contact-item strong{color:var(--fg);font-weight:600;display:inline-block;min-width:80px}
+footer{padding:var(--space-lg) 0;text-align:center;font-size:.72rem;color:var(--fg3)}
 
-/* Responsive */
-@media(max-width:768px){
-  .hamburger{display:block}
-  .nav-menu{display:none}
-  .hero-container{grid-template-columns:1fr;text-align:center;gap:2rem}
-  .hero-title{font-size:2.5rem}
-  .hero-subtitle{font-size:1.2rem}
-  .profile-placeholder{width:200px;height:200px}
-  .profile-placeholder .icon svg{width:64px;height:64px}
-  .skills-grid{grid-template-columns:1fr}
-  .timeline::before{left:15px}
-  .timeline-item{padding-left:50px}
-  .timeline-marker{left:6px;width:18px;height:18px}
-  .education-card{flex-direction:column;text-align:center;padding:2rem}
-  .contact-info{grid-template-columns:1fr}
-  .section-title{font-size:2rem}
-  .projects-grid{grid-template-columns:1fr}
-  .project-header{flex-direction:column;align-items:flex-start}
+/* ── Collapsible ── */
+details{margin-top:var(--space-sm)}
+details summary{font-size:.78rem;color:var(--accent);cursor:pointer;padding:4px 0;user-select:none}
+details summary:hover{color:var(--accent2)}
+details[open] summary{margin-bottom:var(--space-sm)}
+
+/* ── Print ── */
+@media print{
+  nav,.hero-label{display:none}
+  body{background:#fff;color:#111}
+  .tag{border-color:#ccc;color:#333}
+  section{break-inside:avoid}
 }
-@media(max-width:480px){
-  .hero-title{font-size:2rem}
-  .hero-stats{flex-direction:column;gap:1rem}
-  .hero-buttons{flex-direction:column;align-items:center}
-  .btn{width:100%;max-width:250px;text-align:center}
-  .timeline-content{padding:1.5rem}
+
+/* ── Small screens ── */
+@media(max-width:600px){
+  .nav-links a{font-size:.65rem;padding:2px 5px}
+  .hero h1{font-size:1.6rem}
+  .t-entry{padding-left:var(--space-sm)}
+  .container{padding:0 14px}
 }
 
 </style>
 </head>
 <body>
 
-<nav class="navbar">
-  <div class="nav-container">
-    <div class="nav-logo"><h2>Gaurav Gupta</h2></div>
-    <ul class="nav-menu">
-      <li><a href="#home" class="nav-link">Home</a></li>
-        <li><a href="#skills" class="nav-link">Skills</a></li>
-        <li><a href="#experience" class="nav-link">Experience</a></li>
-        <li><a href="#personal_projects" class="nav-link">Projects</a></li>
-        <li><a href="#education" class="nav-link">Education</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
-    </ul>
-    <label class="hamburger">
-      <input type="checkbox" id="nav-toggle">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <div class="nav-overlay">
-        <a href="#home" onclick="document.getElementById('nav-toggle').checked=false">Home</a>
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="container">
+    <div class="nav-name">GG</div>
+    <div class="nav-links">
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
-      <a href="#personal_projects">Projects</a>
+      <a href="#projects">Projects</a>
       <a href="#education">Education</a>
       <a href="#contact">Contact</a>
-      </div>
-    </label>
+    </div>
   </div>
 </nav>
 
-<section id="home" class="hero">
-  <div class="hero-container">
-    <div class="hero-content">
-      <h1 class="hero-title">Gaurav Gupta</h1>
-      <h2 class="hero-subtitle">Technical Architect | iOS &amp; macOS | Application Development · Framework Engineering · Driver Development</h2>
-      <p class="hero-description">Software engineer/architect with experience spanning telecom dataplane development, systems/application support, QA automation, and Apple-platform engineering. Recent focus is on architecting and developing iOS/watchOS/tvOS/macOS apps, SDKs, frameworks, reusable components, CI/CD pipelines, and release workflows. Earlier experience includes Intel IXP-based telecom development, Linux/Unix systems administration, and VMware-oriented test automation.</p>
-      <div class="hero-stats">
-        <div class="stat-item"><h3>22+</h3><p>Years Experience</p></div>
-        <div class="stat-item"><h3>23+</h3><p>Projects</p></div>
-        <div class="stat-item"><h3>158+</h3><p>Technologies</p></div>
-      </div>
-      <div class="hero-buttons">
-        <a href="#contact" class="btn btn-primary">Get in Touch</a>
-        <a href="#experience" class="btn btn-secondary">View Experience</a>
-      </div>
-    </div>
-    <div class="hero-image">
-      <div class="profile-placeholder"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span></div>
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-label">Software Engineer · Technical Architect · 20+ Years</div>
+    <h1>Gaurav Gupta — <em>20+ years</em> building software across the full spectrum</h1>
+    <p class="hero-sub">Building software across the full spectrum — iOS/macOS platforms, SDK &amp; framework engineering, and backend services — from early-career systems work through 14+ years specializing in the Apple ecosystem and expanding into Go-based backend development.</p>
+    <div class="hero-meta">
+      <span>Bengaluru, India</span>
+      <span><a href="https://www.linkedin.com/in/ggupta1981/">LinkedIn</a></span>
+      <span><a href="https://github.com/ggthedev">GitHub</a></span>
+      <span><a href="https://stackoverflow.com/story/gauravgupta1981">StackOverflow</a></span>
     </div>
   </div>
-</section>
+</header>
 
-<section id="skills" class="skills">
+<!-- ═══ SKILLS ═══ -->
+<section id="skills">
   <div class="container">
-    <h2 class="section-title">Skills &amp; Expertise</h2>
-    <div class="skills-grid">
-    <div class="skill-category">
-      <h3>Apple Platforms &amp; Frameworks</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">iOS</span>
-        <span class="skill-tag">iPadOS</span>
-        <span class="skill-tag">watchOS</span>
-        <span class="skill-tag">tvOS</span>
-        <span class="skill-tag">macOS</span>
-        <span class="skill-tag">UIKit</span>
-        <span class="skill-tag">Foundation</span>
-        <span class="skill-tag">Core Data</span>
-        <span class="skill-tag">Core Graphics</span>
-        <span class="skill-tag">Core Bluetooth</span>
-        <span class="skill-tag">Core NFC</span>
-        <span class="skill-tag">Core Location</span>
-        <span class="skill-tag">Core Animation</span>
-        <span class="skill-tag">Local Authentication</span>
-        <span class="skill-tag">AVFoundation</span>
-        <span class="skill-tag">SwiftUI</span>
-        <span class="skill-tag">UserNotifications</span>
-        <span class="skill-tag">Contacts</span>
-        <span class="skill-tag">EventKit</span>
-        <span class="skill-tag">AppKit</span>
-        <span class="skill-tag">Combine</span>
-        <span class="skill-tag">DriverKit</span>
-        <span class="skill-tag">IOKit</span>
-        <span class="skill-tag">Authentication Services</span>
-        <span class="skill-tag">Security / Keychain Services</span>
-        <span class="skill-tag">CryptoKit</span>
-        <span class="skill-tag">External Accessory (MFi)</span>
-        <span class="skill-tag">Core Telephony</span>
-        <span class="skill-tag">XCTest</span>
-        <span class="skill-tag">XCUITest</span>
-        <span class="skill-tag">External Accessory</span>
-        <span class="skill-tag">GCD (Grand Central Dispatch)</span>
-        <span class="skill-tag">QuartzCore</span>
-        <span class="skill-tag">StoreKit (In-App Purchase)</span>
-        <span class="skill-tag">TVML</span>
-        <span class="skill-tag">EventsUI</span>
-        <span class="skill-tag">Firebase RemoteConfig</span>
-        <span class="skill-tag">Firebase Storage</span>
-      </div>
+    <div class="s-head">
+      <h2>Technical DNA</h2>
+      <p>Core competencies and technologies — primary expertise highlighted</p>
     </div>
-    <div class="skill-category">
+
+    <div class="skill-group">
       <h3>Languages</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">Swift</span>
-        <span class="skill-tag">Objective-C</span>
-        <span class="skill-tag">Golang</span>
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">C++</span>
-        <span class="skill-tag">C</span>
-        <span class="skill-tag">Shell</span>
-        <span class="skill-tag">Perl</span>
-        <span class="skill-tag">Rust</span>
-        <span class="skill-tag">Intel IXP proprietary assembly</span>
-        <span class="skill-tag">LISP</span>
-        <span class="skill-tag">VHDL</span>
+      <div class="tags">
+        <span class="tag primary">Swift</span>
+        <span class="tag primary">Objective-C</span>
+        <span class="tag">Golang</span>
+        <span class="tag">Python</span>
+        <span class="tag">C++</span>
+        <span class="tag">C</span>
+        <span class="tag">Shell</span>
+        <span class="tag">Perl</span>
+        <span class="tag">Rust</span>
+        <span class="tag">Intel IXP proprietary assembly</span>
+        <span class="tag">LISP</span>
+        <span class="tag">VHDL</span>
       </div>
     </div>
-    <div class="skill-category">
+
+    <div class="skill-group">
+      <h3>Apple Platforms</h3>
+      <div class="tags">
+        <span class="tag primary">iOS</span>
+        <span class="tag">iPadOS</span>
+        <span class="tag">watchOS</span>
+        <span class="tag">tvOS</span>
+        <span class="tag primary">macOS</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Apple Frameworks</h3>
+      <div class="tags">
+        <span class="tag primary">UIKit</span>
+        <span class="tag primary">Foundation</span>
+        <span class="tag primary">Core Data</span>
+        <span class="tag">Core Graphics</span>
+        <span class="tag primary">Core Bluetooth</span>
+        <span class="tag">Core NFC</span>
+        <span class="tag">Core Location</span>
+        <span class="tag">Core Animation</span>
+        <span class="tag">Local Authentication</span>
+        <span class="tag">AVFoundation</span>
+        <span class="tag primary">SwiftUI</span>
+        <span class="tag">UserNotifications</span>
+        <span class="tag">Contacts</span>
+        <span class="tag">EventKit</span>
+        <span class="tag primary">AppKit</span>
+        <span class="tag primary">Combine</span>
+        <span class="tag primary">DriverKit</span>
+        <span class="tag primary">IOKit</span>
+        <span class="tag">Authentication Services</span>
+        <span class="tag">Security / Keychain</span>
+        <span class="tag">CryptoKit</span>
+        <span class="tag">External Accessory (MFi)</span>
+        <span class="tag">Core Telephony</span>
+        <span class="tag">XCTest</span>
+        <span class="tag">XCUITest</span>
+        <span class="tag">GCD</span>
+        <span class="tag">QuartzCore</span>
+        <span class="tag">StoreKit</span>
+        <span class="tag">TVML</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
       <h3>Architecture &amp; Patterns</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">SDK design</span>
-        <span class="skill-tag">Framework architecture</span>
-        <span class="skill-tag">Modularization</span>
-        <span class="skill-tag">Dynamic frameworks</span>
-        <span class="skill-tag">Static libraries</span>
-        <span class="skill-tag">Objective-C to Swift migration</span>
-        <span class="skill-tag">Whitelabel / multi-target apps</span>
-        <span class="skill-tag">Proof-of-concept development</span>
-        <span class="skill-tag">Technical mentoring</span>
-        <span class="skill-tag">Cross-functional architecture leadership</span>
-        <span class="skill-tag">MVVM</span>
-        <span class="skill-tag">MVVM with Coordinators</span>
-        <span class="skill-tag">MVC</span>
-        <span class="skill-tag">Repository pattern</span>
-        <span class="skill-tag">Swift Generics for type-safe abstractions</span>
-        <span class="skill-tag">XCFramework generation</span>
-        <span class="skill-tag">Swift Concurrency (async/await, actors)</span>
-        <span class="skill-tag">MVP</span>
-        <span class="skill-tag">Custom MV* patterns</span>
-        <span class="skill-tag">Whitelabeling / single-codebase multi-target</span>
-        <span class="skill-tag">Pod generation</span>
+      <div class="tags">
+        <span class="tag primary">SDK Design</span>
+        <span class="tag primary">Framework Architecture</span>
+        <span class="tag">Modularization</span>
+        <span class="tag">Dynamic frameworks</span>
+        <span class="tag">Static libraries</span>
+        <span class="tag">ObjC ↔ Swift Migration</span>
+        <span class="tag">Whitelabel / Multi-target</span>
+        <span class="tag">MVVM</span>
+        <span class="tag primary">MVVM + Coordinators</span>
+        <span class="tag">MVC</span>
+        <span class="tag">Repository pattern</span>
+        <span class="tag">Swift Generics</span>
+        <span class="tag">XCFramework generation</span>
+        <span class="tag primary">Swift Concurrency (async/await, actors)</span>
+        <span class="tag">MVP</span>
+        <span class="tag">Pod generation</span>
+        <span class="tag">MVVM-C (MVVM with Coordinators)</span>
+        <span class="tag">Embedded Framework Architecture</span>
+        <span class="tag">Event scheduler with batch processing</span>
+        <span class="tag">Binary protocol parsing</span>
+        <span class="tag">Platform porting (C#/.NET to Objective-C)</span>
+        <span class="tag">Custom Result type pattern</span>
+        <span class="tag">Singleton internal message bus</span>
+        <span class="tag">State machine lifecycle management</span>
       </div>
     </div>
-    <div class="skill-category">
-      <h3>Tools, CI/CD &amp; SCM</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">Fastlane</span>
-        <span class="skill-tag">Bitrise</span>
-        <span class="skill-tag">CircleCI</span>
-        <span class="skill-tag">Nevercode</span>
-        <span class="skill-tag">Jenkins</span>
-        <span class="skill-tag">Buddy</span>
-        <span class="skill-tag">TestFlight</span>
-        <span class="skill-tag">Custom shell scripting</span>
-        <span class="skill-tag">App Store release management</span>
-        <span class="skill-tag">Apple Developer Portal administration</span>
-        <span class="skill-tag">GitHub Actions</span>
-        <span class="skill-tag">XCFramework shell scripting</span>
-        <span class="skill-tag">DMG packaging</span>
-        <span class="skill-tag">Git</span>
-        <span class="skill-tag">GitHub</span>
-        <span class="skill-tag">GitLab</span>
-        <span class="skill-tag">Bitbucket</span>
-        <span class="skill-tag">SVN</span>
-        <span class="skill-tag">CVS</span>
-        <span class="skill-tag">ClearCase</span>
-        <span class="skill-tag">JIRA</span>
-        <span class="skill-tag">Confluence</span>
-        <span class="skill-tag">Perforce</span>
+
+    <div class="skill-group">
+      <h3>Security &amp; Auth</h3>
+      <div class="tags">
+        <span class="tag">Face ID / Touch ID</span>
+        <span class="tag">iOS Keychain Services</span>
+        <span class="tag">Biometric Auth</span>
+        <span class="tag">Code Signing &amp; Provisioning</span>
+        <span class="tag">App Sandboxing</span>
+        <span class="tag">CryptoKit / CommonCrypto</span>
+        <span class="tag">Encryption / Decryption</span>
+        <span class="tag">OAuth Token Handling</span>
       </div>
     </div>
-    <div class="skill-category">
-      <h3>Security &amp; Testing</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">Face ID / Touch ID (Local Authentication)</span>
-        <span class="skill-tag">iOS Keychain Services</span>
-        <span class="skill-tag">Biometric authentication</span>
-        <span class="skill-tag">Code signing &amp; provisioning</span>
-        <span class="skill-tag">App sandboxing</span>
-        <span class="skill-tag">Encryption / decryption (CryptoKit, CommonCrypto)</span>
-        <span class="skill-tag">OAuth token handling</span>
-        <span class="skill-tag">XCTest</span>
-        <span class="skill-tag">XCUITest</span>
-        <span class="skill-tag">UI Automation testing</span>
-        <span class="skill-tag">SDK stability testing across iOS versions</span>
+
+    <div class="skill-group">
+      <h3>CI/CD &amp; Tooling</h3>
+      <div class="tags">
+        <span class="tag">Fastlane</span>
+        <span class="tag">Bitrise</span>
+        <span class="tag">CircleCI</span>
+        <span class="tag">Nevercode</span>
+        <span class="tag">Jenkins</span>
+        <span class="tag">Buddy</span>
+        <span class="tag">TestFlight</span>
+        <span class="tag">GitHub Actions</span>
+        <span class="tag">DMG packaging</span>
+        <span class="tag">BuddyBuild CI</span>
+        <span class="tag">Doxygen</span>
+        <span class="tag">RhoMobile</span>
+        <span class="tag">Postman</span>
+        <span class="tag">Shell Scripting</span>
       </div>
     </div>
-    <div class="skill-category">
+
+    <div class="skill-group">
+      <h3>SCM &amp; Collaboration</h3>
+      <div class="tags">
+        <span class="tag">Git</span>
+        <span class="tag">GitHub</span>
+        <span class="tag">GitLab</span>
+        <span class="tag">Bitbucket</span>
+        <span class="tag">SVN</span>
+        <span class="tag">ClearCase</span>
+        <span class="tag">JIRA</span>
+        <span class="tag">Confluence</span>
+        <span class="tag">Perforce</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
       <h3>Backend &amp; Data</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">REST API integration</span>
-        <span class="skill-tag">Firebase FCM</span>
-        <span class="skill-tag">Firebase Realtime Database</span>
-        <span class="skill-tag">Firebase Crashlytics</span>
-        <span class="skill-tag">MySQL</span>
-        <span class="skill-tag">PostgreSQL</span>
-        <span class="skill-tag">Analytics / event reporting</span>
+      <div class="tags">
+        <span class="tag">REST APIs</span>
+        <span class="tag">Firebase FCM</span>
+        <span class="tag">Firebase Realtime DB</span>
+        <span class="tag">Firebase Crashlytics</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">RxSwift</span>
+        <span class="tag">RxCocoa</span>
+        <span class="tag">Protocol Buffers (protobuf-swift)</span>
+        <span class="tag">RestKit</span>
+        <span class="tag">Lottie</span>
+        <span class="tag">CryptoSwift</span>
+        <span class="tag">KeychainAccess</span>
+        <span class="tag">Branch.io</span>
+        <span class="tag">MobileRTC (Zoom SDK)</span>
+        <span class="tag">Kal (calendar)</span>
+        <span class="tag">WebViewJavascriptBridge</span>
+        <span class="tag">AsyncSocket</span>
+        <span class="tag">GCDAsyncUdpSocket</span>
+        <span class="tag">SSZipArchive</span>
+        <span class="tag">CocoaLumberjack</span>
+        <span class="tag">Firebase RemoteConfig</span>
       </div>
     </div>
-    <div class="skill-category">
-      <h3>Systems &amp; Low-level</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">Linux/Unix systems administration</span>
-        <span class="skill-tag">Sun Solaris</span>
-        <span class="skill-tag">Apache</span>
-        <span class="skill-tag">VMware functional verification</span>
-        <span class="skill-tag">RHEL</span>
-        <span class="skill-tag">Ubuntu</span>
-        <span class="skill-tag">CentOS</span>
-        <span class="skill-tag">Fedora</span>
-        <span class="skill-tag">Debian</span>
-        <span class="skill-tag">WiMAX</span>
-        <span class="skill-tag">WCDMA Node-B</span>
-        <span class="skill-tag">Intel IXP2400/2350</span>
-        <span class="skill-tag">Dataplane / fastpath development</span>
-        <span class="skill-tag">RFC 2507</span>
-        <span class="skill-tag">RFC 2508</span>
-        <span class="skill-tag">L2/L3 networking</span>
-        <span class="skill-tag">SmartBits</span>
-        <span class="skill-tag">Lauterbach</span>
-        <span class="skill-tag">DriverKit (macOS user-space drivers)</span>
-        <span class="skill-tag">IOKit</span>
-        <span class="skill-tag">Network packet inspection</span>
-        <span class="skill-tag">Socket-level programming</span>
-        <span class="skill-tag">Intel IXP microcode</span>
+
+    <div class="skill-group">
+      <h3>Systems &amp; Low-Level</h3>
+      <div class="tags">
+        <span class="tag primary">DriverKit</span>
+        <span class="tag">IOKit</span>
+        <span class="tag">Network Packet Inspection</span>
+        <span class="tag primary">Socket Programming</span>
+        <span class="tag">Intel IXP Microcode</span>
+        <span class="tag">Linux IPC</span>
+        <span class="tag">Kernel Programming Concepts</span>
       </div>
     </div>
+
+    <div class="skill-group">
+      <h3>Networking Protocols</h3>
+      <div class="tags">
+        <span class="tag">Ethernet</span>
+        <span class="tag">802.11 Wi-Fi</span>
+        <span class="tag">IPv4</span>
+        <span class="tag">IPv6</span>
+        <span class="tag">IPSec</span>
+        <span class="tag">TCP</span>
+        <span class="tag">UDP</span>
+      </div>
     </div>
+
+    <div class="skill-group">
+      <h3>Third-Party SDKs</h3>
+      <div class="tags">
+        <span class="tag">OneSignal</span>
+        <span class="tag">Bugsee</span>
+        <span class="tag">Kobiton</span>
+        <span class="tag">SDWebImage</span>
+        <span class="tag">ASIHTTPRequest</span>
+        <span class="tag">SBJsonParser</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<section id="experience" class="experience">
+<!-- ═══ EXPERIENCE ═══ -->
+<section id="experience">
   <div class="container">
-    <h2 class="section-title">Experience</h2>
+    <div class="s-head">
+      <h2>Career Timeline</h2>
+      <p>Every role — from present day back to 2004</p>
+    </div>
+
     <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-marker"></div>
-      <div class="timeline-content">
-        <div class="timeline-header">
-          <h3>Technical Consultant</h3>
-          <span class="company">Actiknow Consulting Pvt. Ltd.</span>
-          <span class="duration">MAY 2023 - Present</span>
-        </div>
-        <ul>
+
+      <div class="t-entry current">
+        <div class="t-dates">Apr 2023 — Present · 3 yrs</div>
+        <div class="t-title">Technical Architect (iOS) / Technical Consultant</div>
+        <div class="t-org">Actiknow · Contract · Bengaluru, India</div>
+        <p class="t-summary">Current consulting role (Apr 2023 – present) covering iOS/macOS platform modernization, SDK development, and feature delivery across multiple client projects in healthcare, fintech, travel, and connected-home domains.</p>
+        <ul class="t-contribs">
           <li>Developed a production-grade Swift SDK from the ground up, establishing interoperability layer between new Swift codebase and existing Objective-C modules via bridging and wrapper architecture</li>
-          <li>Led Swift concurrency modernisation initiative alongside 2 engineers, migrating legacy codebase to Swift structured concurrency model (async/await, actors)</li>
+          <li>Telecom domain SDK development for a Fortune 500 corporation (NDA — details available on request)</li>
+          <li>Led Swift concurrency modernization initiative alongside 2 engineers, migrating legacy codebase to Swift structured concurrency model (async/await, actors)</li>
         </ul>
+        <details>
+          <summary>View 7 projects</summary>
+          <div class="proj-card">
+            <h4>Native iOS Prescription Management &amp; Pharmacy App</h4>
+            <div class="proj-type">US Pharmacy &amp; Prescription Management Startup</div>
+            <p>Native iOS app enabling prescription intake, transfer, fulfilment tracking, and delivery coordination across a multi-step Rx workflow with Stripe payments and Scandit barcode scanning.</p>
+            <ul class="t-contribs">
+              <li>Worked on prescription sign-up, patient management, Rx submission/transfer, pharmacy selection, insurance capture, delivery selection, and order placement flows</li>
+              <li>Worked on authenticated API clients, OAuth token refresh, Realm-based local user state, push-driven prescription refresh, and Stripe payment storage/checkout</li>
+              <li>Integrated Scandit, Stripe, Crashlytics, and Appboy</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Swift, UIKit, Realm, Stripe, Scandit, Alamofire, Crashlytics</div>
+          </div>
+          <div class="proj-card">
+            <h4>iOS Companion App for On-Demand Mobile Service Platform</h4>
+            <div class="proj-type">US On-Demand Services Startup</div>
+            <p>Swift iOS app for field workers to authenticate, receive assigned job orders, and manage real-time job details including vehicle info, location, and customer data.</p>
+            <ul class="t-contribs">
+              <li>Worked on features related to field-worker authentication, job assignment reception, and real-time job detail management.</li>
+              <li>Integrated AWS Cognito for secure authentication and S3 for media uploads, along with Alamofire for REST API communication and Crashlytics for crash reporting.</li>
+              <li>Contributed to codebase modernization efforts, improving maintainability and performance while supporting ongoing feature development.</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Swift, UIKit, AWS Cognito, AWS S3, Alamofire, Crashlytics</div>
+          </div>
+          <div class="proj-card">
+            <h4>Large-Scale iOS Connected-Home Device Management Platform</h4>
+            <div class="proj-type">US Consumer IoT Company</div>
+            <p>Large-scale modular iOS application for connected-home device management covering networking, analytics, BLE pairing, video/camera workflows, localization, weather, automated testing, and Apple Watch extension.</p>
+            <ul class="t-contribs">
+              <li>Worked on large-scale iOS connected-home platform with modular architecture covering networking, analytics, BLE device pairing, video/camera, &amp; localization.</li>
+              <li>Worked across internal frameworks supporting scalable mobile development</li>
+              <li>Contributed actively to transitioning code base from Objective-C to Swift.</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Objective-C, Swift, UIKit, CoreBluetooth, AVFoundation, CocoaPods</div>
+          </div>
+          <div class="proj-card">
+            <h4>Native iOS Travel Benefits &amp; Airport Lounge Discovery App</h4>
+            <div class="proj-type">Global Travel &amp; Hospitality Company</div>
+            <p>Native iOS app for card members to discover airport lounges — secure authentication, airport/lounge search, amenity discovery, Core Data caching, and Core Location geofencing with local notifications.</p>
+            <ul class="t-contribs">
+              <li>Worked on secure sign-in, airport search, lounge detail views, amenity discovery, cached data and local notifications</li>
+              <li>Implemented secure authentication, session extension/timeout handling, and Keychain-backed user data workflows</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Swift, UIKit, CoreLocation, CoreData, Keychain, Alamofire, Quick/Nimble, XCTest</div>
+          </div>
+          <div class="proj-card">
+            <h4>5G Network Management Platform — Go REST API Backend</h4>
+            <div class="proj-type">US Telecom Infrastructure Startup</div>
+            <p>Go-based REST API for a 5G network management platform — subscriber management, QoS policy engine, and dual-database synchronization (PostgreSQL + MongoDB) for 5G core network runtime.</p>
+            <ul class="t-contribs">
+              <li>Designed and Implemented subscriber management, group management, and QoS policy engine</li>
+              <li>Worked on dual-database sync layer (PostgreSQL + MongoDB) enabling real-time propagation of subscriber and QoS configurations to 5G core runtime with hierarchical QoS precedence resolution.</li>
+              <li>Developed comprehensive unit test suites covering store and service layers with mock-based isolation</li>
+              <li>Designed domain models mapping OpenAPI v1 schemas, Go structs, MongoDB BSON, and PostgreSQL relations — interface-driven architecture with dependency-injected services</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Go, Gin, PostgreSQL, MongoDB, Docker, Kubernetes, Helm, OpenAPI, JWT, GitLab CI, Grafana, Prometheus, Loki, Traefik</div>
+          </div>
+          <div class="proj-card">
+            <h4>Cloud-Native Push Notification Platform (Go)</h4>
+            <div class="proj-type">US Fintech Client B — Cloud-Native Architecture Redesign</div>
+            <p>Cloud-native push notification service for a US fintech — multi-platform delivery (APNS, FCM, Web Push), event-driven architecture with Kafka, dual persistence (PostgreSQL + InfluxDB), and zero-downtime Kubernetes deployments. Targeted 10,000+ messages/sec throughput with sub-5-second latency and full GDPR compliance.</p>
+            <ul class="t-contribs">
+              <li>Designed event-driven push notification service in Go targeting APNS, FCM, and Web Push delivery channels</li>
+              <li>Built dual-persistence layer with PostgreSQL for state and InfluxDB for metrics, fronted by Kafka-backed event bus</li>
+              <li>Containerized for zero-downtime Kubernetes deployments with Prometheus/Grafana observability and TLS/JWT security</li>
+              <li>Implemented RBAC layer and GDPR-compliant data handling across the service</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Go, Gin, PostgreSQL, Redis, InfluxDB, Kafka, Docker Compose, Kubernetes</div>
+          </div>
+          <div class="proj-card">
+            <h4>Push Notification Service — Rust Port</h4>
+            <div class="proj-type">US Fintech Client B — Rust Performance Evaluation</div>
+            <p>Re-implemented the Go push notification microservice in Rust to evaluate performance, safety, and ergonomics for the client. Fully async handlers using Actix-web, SQLx, and Tokio with typed error propagation, matching feature parity with the Go baseline.</p>
+            <ul class="t-contribs">
+              <li>Re-implemented the Go push notification service in Rust with Actix-web, SQLx, and Tokio</li>
+              <li>Built fully async request handlers with typed error propagation matching Go feature parity</li>
+              <li>Benchmarked throughput, latency, and memory characteristics against the Go baseline for client evaluation</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Rust, Actix-web, SQLx, Tokio, PostgreSQL</div>
+          </div>
+        <div class="t-tech"><strong>Stack:</strong> Swift, Objective-C, UIKit, Swift Concurrency, CoreData, CoreLocation, Alamofire, AWS Cognito/S3, Realm, Stripe, Scandit, Go, Gin, PostgreSQL, MongoDB, Kubernetes</div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"></div>
-      <div class="timeline-content">
-        <div class="timeline-header">
-          <h3>Technical Architect</h3>
-          <span class="company">OSW Technologies</span>
-          <span class="duration">JUN 2021 - APR 2023</span>
-        </div>
-        <ul>
-          <li>Architected base framework for a family of reusable frameworks</li>
-          <li>Worked with backend team on API payload design</li>
-          <li>Explained and standardized usage of APIs including UserNotifications, CryptoKit, and Core Telephony</li>
-          <li>Developed custom shell script to generate fat frameworks for simulator and device</li>
+
+      <div class="t-entry">
+        <div class="t-dates">Sep 2022 — Apr 2023 · 7 mo</div>
+        <div class="t-title">Technical Architect (iOS)</div>
+        <div class="t-org">OSW Technologies · Contract · Bengaluru, India</div>
+        <p class="t-summary">Architected a reusable iOS framework family covering authentication, persistence, crypto, analytics, and remote notifications.</p>
+        <ul class="t-contribs">
+          <li>Designed base framework architecture consumed by sibling frameworks</li>
+          <li>Collaborated with backend team on API payload design</li>
+          <li>Standardized usage of UserNotifications, CryptoKit, and Core Telephony APIs</li>
+          <li>Developed shell scripts for fat-framework generation (simulator + device)</li>
+          <li>Built analytics/event-reporting and remote-notifications frameworks on Firebase FCM</li>
           <li>Managed JIRA workflow and technical documentation</li>
-          <li>Built analytics/event-reporting and remote-notifications frameworks tailored to Firebase FCM</li>
         </ul>
+        <details>
+          <summary>Framework Family Project Details</summary>
+          <div class="proj-card">
+            <h4>Modular iOS SDK Suite — Analytics, Push Notifications, In-App Messaging</h4>
+            <div class="proj-type">Framework Platform · Sep 2022 – Apr 2023</div>
+            <p>Architected and built 4 independent XCFrameworks (Core, Events, Notifications, InAppMessage) from scratch — OAuth2 auth with AES-256-GCM encryption, CoreData-backed event batch scheduler, UNNotificationServiceExtension for rich media push, and a lifecycle-aware in-app messaging engine. 82% of all commits (605/734) across 5 repositories.</p>
+            <div class="t-tech"><strong>Stack:</strong> Swift · UIKit · CoreData · CryptoKit · CommonCrypto · UserNotifications · URLSession · Firebase FCM · SPM · XCTest · Shell Scripting</div>
+          </div>
+        </details>
+        <div class="t-tech"><strong>Stack:</strong> Swift, UIKit, Foundation, Core Data, Firebase FCM, CryptoKit, Git, GitHub, GitLab, JIRA</div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"></div>
-      <div class="timeline-content">
-        <div class="timeline-header">
-          <h3>Technical Architect</h3>
-          <span class="company">Freelance Engagement</span>
-          <span class="duration">JUN 2021 - SEP 2021</span>
-        </div>
-        <ul>
-          <li>Bug fixes and release management for a SwiftUI App Clip</li>
-          <li>Architected and developed native and Flutter PoCs</li>
-          <li>Set up CI/CD workflows</li>
-          <li>Worked with entrepreneur/stakeholders on solution direction</li>
+
+      <div class="t-entry">
+        <div class="t-dates">Jul 2021 — Sep 2022 · 1 yr 2 mo</div>
+        <div class="t-title">iOS Consultant</div>
+        <div class="t-org">Freelance · Bengaluru, India</div>
+        <p class="t-summary">Freelance iOS consulting period (Jul 2021 – Sep 2022) — working with an entrepreneur on a consulting engagement on native/Flutter PoCs, CI/CD setup, and release management, alongside delivery of a white-label iOS financial services app for a US fintech client.</p>
+        <ul class="t-contribs">
+          <li>Architected and developed native iOS and Flutter PoCs from the ground up</li>
+          <li>Set up CI/CD environments across varied projects</li>
+          <li>Bug fixes and release management for existing iOS applications</li>
+          <li>Built a Golang PoC as ad-hoc backend to facilitate kickoff for a SwiftUI iOS application</li>
+          <li>Built a white-label iOS financial services app — enrollment, card servicing, transaction history, transfers, and ATM/branch discovery for a prepaid/debit card platform</li>
         </ul>
+        <details>
+          <summary>View 3 projects</summary>
+          <div class="proj-card">
+            <h4>Multi-Venture Mobile Consulting</h4>
+            <div class="proj-type">Independent Entrepreneur — Multi-Venture Mobile Portfolio</div>
+            <p>Mobile consulting engagement with an independent entrepreneur spanning multiple concurrent ventures — SwiftUI App Clip release management, a React Native application, ground-up native iOS and Flutter PoCs, and CI/CD setup across projects.</p>
+            <ul class="t-contribs">
+              <li>Delivered features alongside bug fixes and release management on a SwiftUI-based iOS App Clip in production as one of two developers</li>
+              <li>Contributed to a mobile application built in React Native</li>
+              <li>Developed apps and PoCs from the ground up across native iOS (Swift/SwiftUI) and Flutter</li>
+              <li>Set up CI/CD environments across varied projects — build automation, signing, and release workflows</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Swift, Dart, JavaScript, SwiftUI, App Clips, Flutter, React Native, Xcode, Git, Bitrise, Fastlane</div>
+          </div>
+          <div class="proj-card">
+            <h4>White-Label iOS Financial Services App — Prepaid/Debit Card Platform</h4>
+            <div class="proj-type">US Fintech Company — White-Label Prepaid Card Platform</div>
+            <p>White-label iOS mobile app for issuer-branded prepaid/debit card programs — enrollment, authentication, card servicing, alerts, transaction history, transfers, and ATM/branch discovery.</p>
+            <ul class="t-contribs">
+              <li>Implemented enrollment, sign-in, OTP verification, card/account management, balances, alerts, transaction history, transfer/load-funds, and ATM/branch discovery</li>
+              <li>Engineered service and platform layer using Swift, UIKit, AFNetworking — OAuth/session handling, device registration/binding, analytics, fraud/security tooling, keychain storage, multi-environment config</li>
+              <li>Maintained mixed active/legacy/experimental codebase across Swift VIPER modules, storyboard/XIB UIKit screens, Objective-C utility libraries, mock services, and white-label build automation</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Swift, Objective-C, UIKit, AFNetworking, Keychain, VIPER</div>
+          </div>
+          <div class="proj-card">
+            <h4>Push Notification Platform Service (Go)</h4>
+            <div class="proj-type">US Fintech Client A — Initial PoC</div>
+            <p>Initial proof of concept push notification service with APNS (iOS) support — early-stage backend service exploration with the client.</p>
+            <ul class="t-contribs">
+              <li>Contributed to initial architectural discussions on backend service design</li>
+              <li>Developed an iOS test harness app to validate service functionality</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Go, Gin, PostgreSQL, Docker Compose</div>
+          </div>
+        <div class="t-tech"><strong>Stack:</strong> Swift, Objective-C, UIKit, SwiftUI, AFNetworking, VIPER, Keychain, Bitrise, Golang, Git</div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"></div>
-      <div class="timeline-content">
-        <div class="timeline-header">
-          <h3>Technical Architect</h3>
-          <span class="company">Novelty Data Solutions LLP</span>
-          <span class="duration">APR 2021 - JUN 2021</span>
-        </div>
-        <ul>
+
+      <div class="t-entry">
+        <div class="t-dates">Apr 2021 — Jun 2021 · 2 mo</div>
+        <div class="t-title">Technical Architect (iOS)</div>
+        <div class="t-org">Novelty Data Solutions · Contract · India</div>
+        <p class="t-summary">Technical architect on a reputed OTT product with a large customer base across Europe, Asia, and America.</p>
+        <ul class="t-contribs">
           <li>Technically led a team of 8 engineers</li>
-          <li>Worked with QA, UI/UX, marketing, product owners, and technical managers</li>
+          <li>Cross-functional coordination with QA, UI/UX, marketing, product owners, and technical managers</li>
           <li>Supported iOS/tvOS product work</li>
         </ul>
+        <details>
+          <summary>View 1 project</summary>
+          <div class="proj-card">
+            <h4>Reputed OTT Streaming Platform — iOS/tvOS</h4>
+            <div class="proj-type">OTT Streaming Platform — Large customer base across Europe, Asia, America</div>
+            <p>Technical architect on a reputed OTT platform product with a vast customer base across Europe, Asia, and America. Led a team of 8-10 engineers across iOS and tvOS delivery, working closely with cross-functional stakeholders.</p>
+            <ul class="t-contribs">
+              <li>Technically led a team of 8-10 engineers across iOS and tvOS product delivery</li>
+              <li>Closely worked with cross-functional teams — QA, UI/UX, marketing, product owners, and technical managers</li>
+              <li>Interfaced with product owners, technical managers, and other key stakeholders</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Swift, Objective-C, UIKit, Foundation, CoreData, SwiftUI, TVML, UserNotifications, CoreLocation, Git, GitHub, JIRA, Confluence, CircleCI</div>
+          </div>
+        <div class="t-tech"><strong>Stack:</strong> Swift, Objective-C, UIKit, SwiftUI, TVML, CircleCI, JIRA, Confluence</div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"></div>
-      <div class="timeline-content">
-        <div class="timeline-header">
-          <h3>Technical Architect</h3>
-          <span class="company">HARMAN India</span>
-          <span class="duration">FEB 2020 - APR 2021</span>
-        </div>
-        <ul>
+
+      <div class="t-entry">
+        <div class="t-dates">Feb 2020 — Apr 2021 · 1 yr 2 mo</div>
+        <div class="t-title">Technical Architect (iOS)</div>
+        <div class="t-org">HARMAN · Full-time · Bengaluru, India</div>
+        <p class="t-summary">Mobile center of excellence — reusable iOS framework development and a Xamarin Native healthcare application for a US client.</p>
+        <ul class="t-contribs">
           <li>Member of framework team releasing frameworks consumed across in-house apps</li>
-          <li>Created remote-notifications framework integrating with Firebase FCM</li>
-          <li>Developed feature to schedule local notifications on receiving remote notifications</li>
-          <li>Interfaced with principal architect, product owner, and engineering manager</li>
+          <li>Created remote-notifications framework integrating Firebase FCM</li>
+          <li>Developed scheduling of local notifications triggered by remote notifications</li>
           <li>Led and mentored 2 junior iOS developers</li>
-          <li>Worked on Xamarin Native healthcare application for a US client</li>
-          <li>Developed patient goals and progress modules</li>
-          <li>Improved accessibility to facilitate automation-test generation</li>
-          <li>Contributed to code reviews and demo-application work in some resume versions</li>
+          <li>Worked on Xamarin Native healthcare app — patient goals and progress modules</li>
+          <li>Improved accessibility for automation-test generation</li>
         </ul>
+        <details>
+          <summary>View 2 projects</summary>
+          <div class="proj-card">
+            <h4>Enterprise Mobile Platform — 5 Apps, 13 Frameworks (Global Consulting Firm)</h4>
+            <div class="proj-type">Global Top-2 Management Consulting Firm (30,000+ employees, 90+ offices) · Mar 2020 – Nov 2020</div>
+            <p>Framework team member in a modular iOS ecosystem — 5 production apps and 13 shared Swift frameworks covering authentication, push notifications, analytics, geolocation, events, and UI theming, consumed across all apps.</p>
+            <ul class="t-contribs">
+              <li>Architected and shipped a push notification framework — device registration APIs, topic-based subscriptions, SSO group integration using protocol-oriented design</li>
+              <li>Contributed to end-to-end development of event attendance check-in module for the firm-wide employee base — recurring local push notifications, in-app health declarations, deep-link advance check-in</li>
+              <li>Drove pluggable analytics architecture for shared authentication framework — decoupled event tracking across login lifecycle, biometric auth (Face ID/Touch ID), and session management</li>
+              <li>Contributed to dual-login and fallback credential provisioning in enterprise auth framework supporting OAuth with keychain-based secure storage</li>
+              <li>Created developer-facing sample application for end-to-end integration of auth, push notifications, and analytics frameworks</li>
+              <li>Contributed to CI/CD release pipelines across multiple Carthage-distributed iOS frameworks — semantic versioning, Fastlane release lanes, Cartfile dependency resolution, Bitrise/NeverCode builds</li>
+              <li>Technically led 2 junior iOS developers as well as interfaced directly with key stakeholders such as principal architect on client side.</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Swift, UIKit, MVVM, Coordinator Pattern, Carthage, Fastlane, Firebase Analytics, Firebase Crashlytics, OAuth 2.0, Okta, Alamofire, WKWebView, UNNotificationCenter, CoreData, Keychain, Siri Shortcuts, XCTest, Bitrise CI, NeverCode CI, Git Flow</div>
+          </div>
+          <div class="proj-card">
+            <h4>Cross-Platform Healthcare Mobile App — Surgical Patient Journey</h4>
+            <div class="proj-type">US Medical Device Company — Surgical Patient Care · Nov 2020 – Apr 2021</div>
+            <p>Cross-platform (iOS + Android) healthcare mobile app in Xamarin/C#/MvvmCross supporting surgical patients through pre-operative care — goal tracking, preparation checklists, facility communication, and educational content.</p>
+            <ul class="t-contribs">
+              <li>Contributed to patient goal-assistance and progress modules end-to-end — ViewModels, iOS views (XIB), navigation flows, API integration, localization across 3 new screens</li>
+              <li>Implemented comprehensive accessibility identifier system across 30+ screens on iOS and Android with centralized JSON mapping, enabling Appium-based automation</li>
+              <li>Coordinated with QA team to enable automation using Appium and other frameworks</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> C#, Swift, Xamarin, MvvmCross, UIKit/XIB (iOS), Android Fragments/XML, Appium, NUnit, Azure DevOps, Docker, AKS</div>
+          </div>
+        <div class="t-tech"><strong>Stack:</strong> Swift, Objective-C, UIKit, Core Data, Firebase FCM, Contacts, Crashlytics, Fastlane, Bitrise, Nevercode</div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"></div>
-      <div class="timeline-content">
-        <div class="timeline-header">
-          <h3>Technical Architect / iOS Developer</h3>
-          <span class="company">Freelance Engagement</span>
-          <span class="duration">JAN 2020 - FEB 2020</span>
-        </div>
-        <ul>
+
+      <div class="t-entry">
+        <div class="t-dates">Dec 2019 — Feb 2020 · 2 mo</div>
+        <div class="t-title">iOS Consultant</div>
+        <div class="t-org">Freelance · India / Remote</div>
+        <p class="t-summary">iOS/watchOS application and framework work, Golang PoC, and CI/CD setup.</p>
+        <ul class="t-contribs">
           <li>Architected and developed apps/PoCs from the ground up in iOS/watchOS</li>
-          <li>Set up CI/CD environment</li>
-          <li>Built a Golang PoC to facilitate kickoff for a SwiftUI iOS application</li>
-          <li>Worked remotely with junior iOS developers</li>
+          <li>Built a Golang PoC to kickoff a SwiftUI iOS application</li>
+          <li>Set up CI/CD environment; worked remotely with junior iOS developers</li>
         </ul>
+        <details>
+          <summary>View 2 projects</summary>
+          <div class="proj-card">
+            <h4>iOS/watchOS Application &amp; SDK Development — PoCs &amp; CI/CD</h4>
+            <ul class="t-contribs">
+              <li>Architected and developed iOS/watchOS applications and PoCs from ground up</li>
+              <li>Built Golang backend PoC to facilitate kickoff for a SwiftUI iOS application</li>
+              <li>Set up CI/CD environments for projects</li>
+              <li>Worked remotely with junior iOS developers</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Swift, Golang, UIKit, SwiftUI, WatchKit</div>
+          </div>
+          <div class="proj-card">
+            <h4>Swift Healthcare App — Children&#x27;s Hospital Journey (Bug Fixes &amp; Stabilization)</h4>
+            <div class="proj-type">UK Healthcare Startup — Children&#x27;s Hospital Journey App</div>
+            <p>Bug fix and stabilization work on a Swift/iOS healthcare app helping children prepare for hospital/surgery experiences.</p>
+            <ul class="t-contribs">
+              <li>Resolved critical journey-start flow failures across SelectTourViewController, SetupCompleteViewController, and ProfileCoordinator navigation stack</li>
+              <li>Hardened Core Data persistence and state management — patched CoreDataStore, Database, and State layers including hospital selection and Room entity handling</li>
+              <li>Improved UI polish and coordinator architecture — cleaned up Profile/Settings/Map view controllers, fixed storyboard defects, and streamlined networking client</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Swift, UIKit, CoreData, Coordinator Pattern</div>
+          </div>
+        <div class="t-tech"><strong>Stack:</strong> Swift, Golang, UIKit, SwiftUI, Bitrise, JIRA</div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"></div>
-      <div class="timeline-content">
-        <div class="timeline-header">
-          <h3>Technical Lead</h3>
-          <span class="company">Invaria Technologies</span>
-          <span class="duration">JUN 2019 - DEC 2019</span>
-        </div>
-        <ul>
-          <li>Led a team of 2 iOS developers</li>
-          <li>Worked with QA, firmware, server-side, and principal engineer in the USA</li>
+
+      <div class="t-entry">
+        <div class="t-dates">Jun 2019 — Dec 2019 · 6 mo</div>
+        <div class="t-title">Technical Lead</div>
+        <div class="t-org">Invaria · Contract · Bengaluru, India</div>
+        <p class="t-summary">Tech lead for iOS application development at a services company, delivering a BLE-connected medical device companion app for a US-based consumer healthcare wearable startup.</p>
+        <ul class="t-contribs">
+          <li>Led a team of 2 iOS developers; collaborated with QA, firmware, server-side, and US-based principal engineer</li>
           <li>Contributed to architecture overhaul</li>
           <li>Designed generic local-persistence component/framework</li>
           <li>Designed sync flow between Firebase Realtime DB and local persistence on fresh install</li>
-          <li>Worked closely with automation team to facilitate full UI automation testing</li>
+          <li>Facilitated full UI automation testing with automation team</li>
         </ul>
+        <div class="t-tech"><strong>Stack:</strong> Swift, Objective-C, Core Bluetooth, Core Data, Firebase Realtime DB, Crashlytics, Buddy, Bitrise</div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"></div>
-      <div class="timeline-content">
-        <div class="timeline-header">
-          <h3>iOS Consultant / Developer / Trainer</h3>
-          <span class="company">Freelance Engagement</span>
-          <span class="duration">MAY 2016 - JUN 2019</span>
-        </div>
-        <ul>
-          <li>Worked on roughly 10-15 projects across multiple domains</li>
-          <li>Fixed issues and delivered new features</li>
-          <li>Developed PoCs for feasibility analysis</li>
-          <li>Worked on Objective-C to Swift migrations</li>
-          <li>Modularized applications into frameworks</li>
-          <li>Worked on static libraries, dynamic frameworks, pod generation, and multi-target setups</li>
-          <li>Handled training/consulting in some engagements</li>
+
+      <div class="t-entry">
+        <div class="t-dates">May 2016 — Jun 2019 · 3 yrs 1 mo</div>
+        <div class="t-title">iOS Consultant</div>
+        <div class="t-org">Freelance · India / Remote</div>
+        <p class="t-summary">10–15 projects across retail, fintech, health, and banking — app development, SDK work, Objective-C-to-Swift migrations, framework modularization, whitelabeling, and training.</p>
+        <ul class="t-contribs">
+          <li>Application development, SDK development across multiple domains</li>
+          <li>Objective-C to Swift migrations</li>
+          <li>Modularized apps into frameworks — static libs, dynamic frameworks, pod generation</li>
+          <li>Whitelabeling: single codebase, multiple targets</li>
+          <li>Training and consulting engagements</li>
         </ul>
+        <p class="t-summary" style="font-style:italic;font-size:.78rem;margin-top:var(--space-sm)">Includes Baryons Software Solutions engagement (Jun–Sep 2016) — mobility associate architect, in-house app architecture, Apple Developer Program point of contact.</p>
+        <details>
+          <summary>View 11 projects</summary>
+          <div class="proj-card">
+            <h4>Enterprise Wealth Management iOS App (iPhone &amp; iPad)</h4>
+            <div class="proj-type">US Financial Services Firm — Wealth Management Platform</div>
+            <p>Lead iOS developer on a universal (iPhone/iPad) Swift wealth-management app serving self-directed and advisor-assisted investing workflows. MVVM + Coordinator architecture, 15+ features delivered end-to-end over 21 months.</p>
+            <ul class="t-contribs">
+              <li>Delivered 15+ production features end-to-end across Accounts, Goals, Dashboard, Activity, Plan Summary, and Authentication modules using MVVM + Coordinator architecture — 513/776 commits (~66% ownership), ~143K lines, 3,021 files, 40+ branches over 21 months</li>
+              <li>Owned ETF portfolio allocation with interactive pie/donut drill-down (major → sub-asset navigation) — 88 commits on that branch alone</li>
+              <li>Delivered Recommended Accounts, New Accounts, and account-opening unification flows (in-progress, failed, summary states)</li>
+              <li>Led Swift 3 → Swift 4 migration across main app and two in-house frameworks (TestKit, StyleKit), maintaining parallel Xcode 8.x/9.x build compatibility</li>
+              <li>Built and stabilized size-class-adaptive UI for iPad Pro 10.5&quot;/12.9&quot; and iPhone SE, resolving 15+ high-priority crashes and layout defects</li>
+              <li>Extended test automation with XCTest service/coordinator unit tests and XCUITest + Gherkin/Cucumber BDD feature suites in Jenkins pipeline with JUnit reporting and screenshot diffing</li>
+              <li>Executed architectural refactors (ClientMessageViewController extraction, Goals refactor, Action Plan tech refactor) and feature-flag scaffolding for progressive rollout</li>
+              <li>Contributed to DevOps — Jenkinsfile stages, xcconfig/entitlement wiring for dual SIP/IIP targets, shell automation for keychains, certs, and provisioning profiles</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Swift 3/4, Objective-C, UIKit, Alamofire, XCTest, XCUITest, Jenkins, Xcode 8.2–9.2, Git, xcodebuild</div>
+          </div>
+          <div class="proj-card">
+            <h4>Enterprise Mobile Learning Platform — SDK Architecture &amp; Swift Modernization</h4>
+            <div class="proj-type">Enterprise Learning Platform — Fortune 500 Client</div>
+            <p>Architected and built a modular iOS SDK framework (Swift) for an enterprise mobile learning platform. 100% SDK ownership, led a junior developer, integrated with a 15+ member team maintaining a large-scale Objective-C codebase.</p>
+            <ul class="t-contribs">
+              <li>Designed and developed the SDK Framework from scratch — 7 modular managers (Network, Error, Cache, File, Security, Domain, Log) using protocol-oriented design and Objective-C interop wrappers</li>
+              <li>Built comprehensive Codable data model layer for Firebase Realtime DB entities (courses, cards, assessments, user nodes) with custom key decoding strategies across 45+ Swift model files</li>
+              <li>Authored 60+ unit tests covering all learning path card types, question cards, file I/O, caching, and network operations — establishing mock data infrastructure with environment-based configuration</li>
+              <li>Introduced Coordinator pattern for new feature modules, modernizing navigation architecture within the existing 270-screen MVC application</li>
+              <li>Integrated custom SDK into production application (270+ screens), resolving framework linking, build configuration, and Swift/ObjC bridging challenges</li>
+              <li>Created Firebase DB wrapper with protocol-based design and ObjC interop wrappers</li>
+              <li>Led a junior developer with code review, refactoring guidance, and branch management across 10+ feature branches</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Swift, Objective-C, UIKit, Firebase (RTDB, Auth, Messaging, Analytics), CryptoSwift, KeychainAccess, CoreData, MobileRTC (Zoom SDK), Branch.io, AWS S3, Git, Carthage, CocoaPods, XCTest</div>
+          </div>
+          <div class="proj-card">
+            <h4>Multi-Bank White-Label Banking Platform (iOS)</h4>
+            <div class="proj-type">Indian Regional Banking Group — Multi-Bank Mobile Platform</div>
+            <p>Feature enhancement on a native Objective-C iOS banking app covering account management, transfers, bill pay, mobile deposit, alerts, secure messaging, and customer preferences across a white-labeled multi-bank platform.</p>
+            <ul class="t-contribs">
+              <li>Enhanced features including account management, transfers, bill pay, mobile deposit, alerts, secure messaging, and customer preferences</li>
+              <li>Designed and implemented customer contact-information workflow expanding email-only settings into full profile management with validation logic and post-login confirmation prompts</li>
+              <li>Integrated mobile UI flows with backend banking services using a structured request/response service layer</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Objective-C, UIKit</div>
+          </div>
+          <div class="proj-card">
+            <h4>Smart-Home Automation Platform — Lighting, Volume &amp; Door Entry</h4>
+            <div class="proj-type">US Smart-Home Platform Company</div>
+            <p>Feature enhancement on a Swift-based smart-home iOS platform covering lighting control, volume management, scene management, and door entry video with live camera and cloud surveillance.</p>
+            <ul class="t-contribs">
+              <li>Built adaptive iOS volume-control workflows switching between slider-based and button-based controls based on device capability, with synchronized master-volume and mute behavior across multi-room services</li>
+              <li>Expanded Swift-based lighting platform with scene management, onboarding flows, navigation/coordinator updates, and cloud/configuration service layers</li>
+              <li>Developed Door Entry functionality — live camera feed, in-call entry screens, video history, and clip playback UI</li>
+              <li>Integrated cloud-backed clip retrieval and deletion into SDK and data layer for end-to-end handling of recorded entry events</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Swift, UIKit, AVFoundation, CocoaPods</div>
+          </div>
+          <div class="proj-card">
+            <h4>Automotive Smart-Cabin HMI/Infotainment Platform (C++)</h4>
+            <div class="proj-type">European Automotive OEM — Smart-Cabin HMI Platform</div>
+            <p>Cross-platform C++ IPC/middleware platform for an automotive smart-cabin prototype — protobuf schemas for media, navigation, climate, vehicle telemetry, Bluetooth, and lighting; TCP socket replication; Android JNI bindings.</p>
+            <ul class="t-contribs">
+              <li>Built cross-platform C++ IPC/middleware platform defining protobuf schemas for media, navigation, climate, vehicle telemetry, occupant profiles, Bluetooth, and lighting</li>
+              <li>Developed transport and integration layers including TCP socket replication, Bluetooth seat-device mapping, and Android JNI/Java bindings</li>
+              <li>Created internal simulation and debugging tooling: clock/media publishers, live protobuf visual debugger, and smart-surface LED animation utilities</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> C++, Java, Protocol Buffers, TCP/IP sockets, Bluetooth, Android JNI</div>
+          </div>
+          <div class="proj-card">
+            <h4>iOS Field Operations &amp; Blue-Force-Tracking App</h4>
+            <div class="proj-type">Field Operations &amp; Tactical Coordination Platform</div>
+            <p>iOS field-operations and blue-force-tracking product — live location, ArcGIS mapping, geofence messaging, and emergency-mode response for real-time team coordination.</p>
+            <ul class="t-contribs">
+              <li>Built and maintained iOS blue-force-tracking app — live location broadcasting, officer/team visibility, emergency-mode workflows, and ArcGIS-powered mapping</li>
+              <li>Engineered geospatial features: multi-map support, geofenced location messaging, map annotation clustering, and location-driven notifications for tactical coordination</li>
+              <li>Developed shared mobile platform infrastructure: background location engines, heartbeat/polling schedulers, modular data/business/presentation layers, and chat/notification systems</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Swift, Objective-C, UIKit, CoreLocation, ArcGIS, MapKit</div>
+          </div>
+          <div class="proj-card">
+            <h4>AR Social-Sharing App — Object Recognition &amp; Memory Lockers</h4>
+            <div class="proj-type">US AR Social Platform Startup</div>
+            <p>iOS AR social app letting users attach photos, videos, and audio to physical objects as shareable &quot;memory lockers,&quot; discoverable via Vuforia object recognition and location-aware scanning.</p>
+            <ul class="t-contribs">
+              <li>Built core consumer app workflows across AR/mapping/social/media layers — Google Maps/Places discovery, Facebook authentication and friend tagging, locker creation, privacy controls, profile/timeline galleries, and multipart media upload/playback</li>
+              <li>Drove release engineering and platform hardening — CocoaPods dependencies, push notifications, analytics, crash/logging SDKs, entitlements/signing assets, and IPA packaging</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Objective-C, Objective-C++, UIKit, Vuforia, CoreLocation, MapKit, AVFoundation, Facebook SDK, CocoaPods</div>
+          </div>
+          <div class="proj-card">
+            <h4>Embedded iOS Financial-Services SDK — Mobile Check Cashing/Deposit</h4>
+            <div class="proj-type">US Financial Services Company — Mobile Check Deposit</div>
+            <p>Partner-embedded iOS SDK sample app enabling check cashing/deposit flows via SSO, with risk/compliance orchestration, transaction history, and configurable environments (UAT/production).</p>
+            <ul class="t-contribs">
+              <li>Built and packaged embedded iOS financial-services SDK sample app — SSO-based launch, transaction approval callbacks, history views, redeem-code screens, and environment switching</li>
+              <li>Integrated risk, compliance, and transaction orchestration layers — device fingerprinting, location capture, T&amp;C handling, KYC/manual review states, card-selection features</li>
+              <li>Maintained active, legacy, and experimental delivery paths across distributable framework + resource bundle, alternate SDK flavors, branding overrides, and mock API payloads</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Objective-C, UIKit, ExternalAccessory</div>
+          </div>
+          <div class="proj-card">
+            <h4>Multi-Country Mobile Banking Platform — iOS Native SDKs</h4>
+            <div class="proj-type">Latin American Multi-Country Mobile Banking Platform</div>
+            <p>Modular mobile banking ecosystem with native iOS feature SDKs across login, accounts, transfers, card controls, cash advance, and country-specific configurations for multiple countries.</p>
+            <ul class="t-contribs">
+              <li>Built and maintained modular mobile banking platform — native iOS feature SDKs for login, accounts, transfers, bill payments, card controls, cash advance, notifications, profile, and security</li>
+              <li>Delivered multi-country white-label/mobile configuration layer with environment-specific bundles and JSON-driven product/operation menus covering transfers, payments, mobile top-ups, and loan flows</li>
+              <li>Developed Node/Express analytics platform for app ratings, NPS, review-email, and transaction reporting</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Swift, Objective-C, Node.js, UIKit, CocoaPods, Cordova</div>
+          </div>
+          <div class="proj-card">
+            <h4>iOS Authentication SDK — Biometric Auth &amp; Consent Flows</h4>
+            <div class="proj-type">US Telecom Company — Mobile Authentication Platform</div>
+            <p>iOS authentication SDK and sample app with biometric (Touch ID), Terms and Conditions consent flows, reusable logging, and framework packaging.</p>
+            <ul class="t-contribs">
+              <li>Implemented biometric authentication with Touch ID, Terms and Conditions consent screens, and reusable logging utilities</li>
+              <li>Worked on Xcode workspace configuration, framework packaging, build workflows, and device-level validation</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Objective-C, Swift, UIKit, LocalAuthentication, Security</div>
+          </div>
+          <div class="proj-card">
+            <h4>Enterprise iOS Field-Inspection App — Offline Data Handling</h4>
+            <div class="proj-type">US Enterprise Company — Field Inspection Platform</div>
+            <p>iOS field-operations app for managing inspections, facility data, attachments, and reports in an offline-capable workflow.</p>
+            <ul class="t-contribs">
+              <li>Enhanced enterprise iOS field-inspection application — offline data handling, site/facility drill-downs, inspection detail popovers, settings/utilities, document and photo workflows, reporting support</li>
+              <li>Implemented storyboard-based Terms &amp; Conditions acceptance flow in companion app, rendering bundled content locally and persisting acceptance state</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Objective-C, Swift, UIKit, CoreData</div>
+          </div>
+        <div class="t-tech"><strong>Stack:</strong> Objective-C, Swift, UIKit, Core Data, Core Bluetooth, Local Authentication, Core Animation, CircleCI, Jenkins, Buddy</div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"></div>
-      <div class="timeline-content">
-        <div class="timeline-header">
-          <h3>Technical Lead</h3>
-          <span class="company">Mindteck India Limited</span>
-          <span class="duration">AUG 2012 - MAY 2016</span>
-        </div>
+
+      <div class="t-entry">
+        <div class="t-dates">Aug 2012 — May 2016 · 3 yrs 9 mo</div>
+        <div class="t-title">Technical Lead</div>
+        <div class="t-org">Mindteck · Full-time · Bengaluru, India</div>
+        <p class="t-summary">SPOC/SME for iOS development. SDK quality engineering and maintenance for a Fortune 500 enterprise mobility client, Apple Developer Program administration, medical device SDK platform port, and IoT proof-of-concepts.</p>
+        <ul class="t-contribs">
+          <li>Led whitebox testing and sustaining engineering for a widely-distributed enterprise iOS SDK across 3 hardware form factors and 20+ barcode symbologies</li>
+          <li>Built 8+ sample and demo applications serving as reference implementations for global SDK consumers</li>
+          <li>Authored hybrid browser app with custom JavaScript-to-native bridge enabling web-based enterprise apps to access native hardware scanning</li>
+          <li>Delivered 7+ production bug fixes addressing GCD timing race conditions, firmware compatibility, and command pipeline regressions</li>
+          <li>Built native plugins for PhoneGap/Cordova and RhoMobile cross-platform frameworks</li>
+          <li>Administrator / agent for Apple Developer Program across the organisation</li>
+          <li>Mentored junior developers; contributed to SOPs for new projects</li>
+          <li>Led platform port of a real-time healthcare data communication SDK from C#/.NET to Objective-C — AES-256, TCP/UDP sockets, binary protocol parsing, 30+ clinical data models</li>
+        </ul>
+        <details>
+          <summary>View 3 projects</summary>
+          <div class="proj-card">
+            <h4>Enterprise Mobile Data Capture SDK — Fortune 500 Enterprise Mobility Company</h4>
+            <div class="proj-type">Fortune 500 Enterprise Scanning &amp; Mobility Company · Jun 2013 – Mar 2015</div>
+            <p>Whitebox testing, sustaining engineering, sample app development, and cross-platform plugin engineering for an enterprise iOS SDK powering barcode scanning and payment hardware sled accessories across 3 device form factors and 20+ barcode symbologies.</p>
+            <ul class="t-contribs">
+              <li>Led whitebox testing and sustaining engineering for a widely distributed iOS SDK (Objective-C) supporting global SDK consumers across 3 hardware form factors</li>
+              <li>Built 8+ sample and demo applications from ground up (POS, barcode scanner, battery monitor, configuration tools) serving as reference implementations for SDK integration by enterprise customers worldwide</li>
+              <li>Authored the WedgeBrowser hybrid application from scratch with a custom JavaScript-to-native bridge (URL-scheme interception + WebViewJavascriptBridge callback architecture) enabling web-based enterprise apps to leverage native hardware scanning and MSR capabilities</li>
+              <li>Delivered 7+ production bug fixes in core SDK (Objective-C) addressing trigger-key control, battery monitoring race conditions (GCD timing), firmware compatibility, and command pass-through pipeline regressions</li>
+              <li>Built native plugins for PhoneGap/Cordova and RhoMobile cross-platform frameworks, extending SDK reach to hybrid enterprise mobility solutions</li>
+              <li>Contributed to software device emulator enabling hardware-free SDK development via TCP socket-based simulation with plist-driven mock data injection</li>
+              <li>Executed 5+ Engineering Verification Test cycles across SDK versions and iOS versions (6.x through 8.x) with comprehensive test matrices</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Objective-C, JavaScript, C, iOS SDK (6.x–8.x), ExternalAccessory, UIKit, GCD, WebViewJavascriptBridge, Xcode, PhoneGap/Cordova, RhoMobile, AsyncSocket, Doxygen, SVN</div>
+          </div>
+          <div class="proj-card">
+            <h4>Medical Device Data Communication SDK — Platform Port (.NET to iOS)</h4>
+            <div class="proj-type">US Medical Device Manufacturer — Patient Monitoring Systems · Nov 2015 – May 2016</div>
+            <p>Full platform port of a real-time healthcare data communication SDK from C#/.NET (Windows) to Objective-C (iOS), delivering a production-grade static library (~20K+ LOC) that receives, decrypts, and parses live patient vital-sign telemetry from medical monitoring devices over TCP/UDP sockets using a proprietary binary protocol (EDS).</p>
+            <ul class="t-contribs">
+              <li>Led the platform port of a real-time healthcare data communication SDK from C#/.NET (10,570 LOC across 70 source files) to Objective-C (~20,000+ LOC) targeting iOS 8.0+</li>
+              <li>Designed and implemented the complete EDS binary protocol stack — binary packet parsing, chunked message reassembly, type dispatching, and deserialization of 30+ clinical data models (vitals, waveforms, ECG, medications, assessments)</li>
+              <li>Implemented AES-256 encryption/decryption layer using CommonCrypto with MD5/SHA1 hashing for secure payload exchange between medical monitoring devices and iOS clients</li>
+              <li>Built TCP/UDP networking layer using BSD Sockets, CFStream, and GCDAsyncUdpSocket for real-time device communication and UDP-based service discovery</li>
+              <li>Architected the public SDK API using singleton internal message bus, protocol-based delegation, and state machine lifecycle management</li>
+              <li>Built 8+ test harnesses and demo applications (TCP/UDP servers, AES encryption validators, reference ePCR apps) for cross-platform protocol validation</li>
+              <li>Managed static library distribution builds (universal ARM + Simulator), IPA packaging, and SVN/Git release workflows for a 3-person development team</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Objective-C, C, iOS SDK (8.0+), Foundation, CFNetwork/CFStream, BSD Sockets, GCDAsyncUdpSocket, CommonCrypto (AES-256, MD5, SHA1), SSZipArchive, CocoaLumberjack, Xcode, SVN, Git, Doxygen, Static library packaging (.a)</div>
+          </div>
+          <div class="proj-card">
+            <h4>Internal IoT Proof of Concept — Connected Device Control</h4>
+            <p>PoC for controlling connected devices (bulb, dimmer) over iOS.</p>
+            <ul class="t-contribs">
+              <li>Built proof of concept for connected-device control</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Objective-C, UIKit</div>
+          </div>
+        <div class="t-tech"><strong>Stack:</strong> Objective-C, UIKit, Foundation, Core Graphics, External Accessory, CFNetwork, BSD Sockets, CommonCrypto, WebViewJavascriptBridge, PhoneGap/Cordova, Git, SVN, JIRA</div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"></div>
-      <div class="timeline-content">
-        <div class="timeline-header">
-          <h3>iOS Consultant / Developer / Trainer</h3>
-          <span class="company">Freelance Engagement</span>
-          <span class="duration">MAR 2012 - AUG 2012</span>
-        </div>
-        <ul>
-          <li>Worked on multiple mobile applications for a single client in banking domain</li>
-          <li>Issue fixing and bug resolution</li>
-          <li>Feature: photo management — upload via web interface or camera roll</li>
-          <li>Developed 3 PoCs specifically for iPad (version 1 &amp; 2)</li>
+
+      <div class="t-entry">
+        <div class="t-dates">Mar 2012 — Aug 2012 · 5 mo</div>
+        <div class="t-title">iOS Consultant</div>
+        <div class="t-org">Freelance · India</div>
+        <p class="t-summary">Early freelance iOS consulting — banking domain mobile apps, iPad PoCs, team leadership, and training.</p>
+        <ul class="t-contribs">
+          <li>Worked on multiple mobile applications for a banking-domain client</li>
+          <li>Developed 3 PoCs specifically for iPad (v1 &amp;amp; v2)</li>
           <li>Led/oversaw development of 5 team members as Tech Lead</li>
-          <li>Also provided iOS training/freelance consulting</li>
+          <li>Provided iOS training/freelance consulting</li>
         </ul>
+        <details>
+          <summary>View 3 projects</summary>
+          <div class="proj-card">
+            <h4>Educational Institution iOS App — Full Lifecycle Ownership</h4>
+            <p>Sole developer on a native iOS educational institution app built in Swift, delivering student authentication, profile management, fees tracking, news feed, and contact-us modules across 3 App Store releases.</p>
+            <ul class="t-contribs">
+              <li>Sole developer delivering 3 App Store releases (v1.2, v1.3, v1.3.2) over the engagement</li>
+              <li>Designed protocol-oriented API routing system with layered service architecture — NetworkManager for HTTP, ServiceManager for business logic, concurrent background queues for parallel data fetching</li>
+              <li>Implemented secure authentication with Keychain credential storage for auto-login, profile photo caching via AlamofireImage with AutoPurgingImageCache</li>
+              <li>Extended app to universal (iPhone + iPad) support in v1.3</li>
+              <li>Created build automation shell scripts for version/build number management, managed Carthage dependencies via local git repos</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Swift, UIKit, Alamofire, AlamofireImage, SwiftKeychainWrapper, Xcode, Carthage, GitLab, Shell scripting</div>
+          </div>
+          <div class="proj-card">
+            <h4>Consumer IoT Connected-Home iOS App</h4>
+            <p>Native iOS app for consumer IoT devices — device onboarding, local network discovery (UDP multicast), cloud account management, and remote device control. Short-duration feature support and maintenance in existing Objective-C MVC codebase.</p>
+            <ul class="t-contribs">
+              <li>Worked on onboarding/auth screens, UI refinements, and bug fixes in an existing Objective-C MVC codebase</li>
+              <li>Supported device lifecycle features including local-network discovery, device persistence, cloud binding/unbinding behavior</li>
+              <li>Maintained iOS build configuration, bundle identifier, signing configuration, and general Xcode project upkeep</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Objective-C, UIKit, AsyncSocket, GCDAsyncUdpSocket, MKNetworkKit</div>
+          </div>
+          <div class="proj-card">
+            <h4>Real Estate Property Booking iOS App</h4>
+            <p>Sole developer on a native iOS real estate property booking app (Objective-C) — authentication, property browsing with floor plans, booking management, payment tracking, and user profiles delivered in 48 days.</p>
+            <ul class="t-contribs">
+              <li>Built entire application from scratch as sole developer — 26 view controllers, 8 data models, 44K+ lines of code in 48 days</li>
+              <li>Architected using MVC pattern with centralized networking (AFNetworking), singleton-based web service and URL management layers</li>
+              <li>Built interactive property browsing features including 3D parallax image scrolling, pan/zoom gestures for floor plans, and animated transitions</li>
+              <li>Integrated and customized 20+ third-party libraries for animations, navigation, PDF viewing, maps, and popup dialogs</li>
+              <li>Resolved 9 critical UI/UX bugs and performed static analysis cleanup</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Objective-C, UIKit, AFNetworking, MapKit, Xcode, Git (SourceTree)</div>
+          </div>
+        <div class="t-tech"><strong>Stack:</strong> Objective-C, Swift, UIKit, AFNetworking, AsyncSocket, GCDAsyncUdpSocket, Alamofire, Xcode, Git, Carthage</div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"></div>
-      <div class="timeline-content">
-        <div class="timeline-header">
-          <h3>Technical Lead</h3>
-          <span class="company">Emids</span>
-          <span class="duration">AUG 2011 - MAR 2012</span>
-        </div>
+
+      <div class="t-entry">
+        <div class="t-dates">Aug 2011 — Mar 2012 · 7 mo</div>
+        <div class="t-title">Technical Lead</div>
+        <div class="t-org">Emids · Full-time · Bengaluru, India</div>
+        <p class="t-summary">First professional iOS/iPad role — healthcare photo-management features on a consumer health &amp; wellness app and iPad PoCs.</p>
+        <ul class="t-contribs">
+          <li>Led a 5-member offshore iOS development team across 3 concurrent healthcare projects, coordinating with a 6-person US-based client engineering team</li>
+          <li>Architected and built the complete photo management module (~3,100 LOC) for a consumer health &amp; wellness app — album browsing, thumbnail grid views, multi-photo upload with Base64 encoding, async image caching, and full CRUD operations via RESTful APIs</li>
+          <li>Implemented manager-delegate service layer using RestKit for REST API integration with async photo operations, structured error handling, and JSON-to-model object mapping</li>
+          <li>Contributed to iPad clinical application with UISplitViewController-based patient management — appointment calendars, demographics, encounter history, vitals tracking, and review-of-systems workflows</li>
+          <li>Supervised development of healthcare EHR integration proof-of-concept iPad app, mentoring junior developers on iOS architecture patterns</li>
+          <li>Integrated third-party SDKs including SDWebImage, ASIHTTPRequest, ELCImagePickerController, Facebook SDK, and Twitter+OAuth within a 150+ screen codebase</li>
+        </ul>
+        <details>
+          <summary>View 3 projects</summary>
+          <div class="proj-card">
+            <h4>Consumer Health &amp; Wellness iOS App — Photo Module</h4>
+            <p>Built the complete photo management subsystem end-to-end for a 150+ screen consumer health &amp; wellness iOS app.</p>
+            <ul class="t-contribs">
+              <li>Built complete photo management subsystem — 12 classes, 7 screens, ~3,100 LOC</li>
+              <li>Designed manager-delegate pattern (MyPhotosManager with 11 delegate methods) for async photo operations via RestKit</li>
+              <li>Implemented multi-photo upload pipeline with Base64 encoding, ASIHTTPRequest, and background processing</li>
+              <li>Integrated SDWebImage for async thumbnail loading with caching in grid views</li>
+              <li>Supported friend photo browsing via parameterized view controllers serving dual user/friend contexts</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Objective-C, UIKit, CoreData, RestKit, ASIHTTPRequest, SDWebImage, Facebook SDK, Twitter+OAuth, SBJson, ELCImagePickerController, Xcode, SVN</div>
+          </div>
+          <div class="proj-card">
+            <h4>Clinical Point-of-Care iPad App</h4>
+            <p>Clinical/point-of-care iPad application for patient management with UISplitViewController-based master-detail layout.</p>
+            <ul class="t-contribs">
+              <li>Contributed to iPad clinical app with patient management — appointment calendars (Kal), patient demographics, encounter history, review of systems, vitals (BP, pulse, temperature, height, weight, BMI)</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Objective-C, UIKit, ASIHTTPRequest, SBJson, Kal, iPad</div>
+          </div>
+          <div class="proj-card">
+            <h4>EHR Integration Proof of Concept (iPad)</h4>
+            <p>Proof-of-concept for EHR system integration using UISplitViewController master-detail pattern.</p>
+            <ul class="t-contribs">
+              <li>Supervised development of healthcare EHR integration PoC</li>
+              <li>Mentored junior developer on iOS architecture patterns</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Objective-C, iPad</div>
+          </div>
+        <div class="t-tech"><strong>Stack:</strong> Objective-C, UIKit, CoreData, CoreGraphics, MapKit, RestKit, ASIHTTPRequest, SDWebImage, ELCImagePickerController, SBJson, Facebook SDK, Twitter+OAuth, Kal, Xcode, SVN</div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"></div>
-      <div class="timeline-content">
-        <div class="timeline-header">
-          <h3>Technical Lead</h3>
-          <span class="company">Wipro Technologies</span>
-          <span class="duration">DEC 2010 - JUL 2011</span>
-        </div>
+
+      <div class="t-entry">
+        <div class="t-dates">Dec 2010 — Jul 2011 · 7 mo</div>
+        <div class="t-title">Technical Lead</div>
+        <div class="t-org">Wipro · Full-time · India</div>
+        <p class="t-summary">System software development in the telecom domain on return to corporate employment.</p>
+        <details>
+          <summary>View 1 project</summary>
+          <div class="proj-card">
+            <h4>WCDMA Node-B Transport Module — L2/L3 System Software</h4>
+            <div class="proj-type">Tier-1 Telecom Client</div>
+            <ul class="t-contribs">
+              <li>Feature development and maintenance as part of network processor team</li>
+              <li>Implemented drop counters per VLAN and for whole system</li>
+              <li>Enabled console-access mechanism for counters</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Intel IXP proprietary assembly, C, Intel IXP</div>
+          </div>
+        <div class="t-tech"><strong>Stack:</strong> C, Assembly</div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"></div>
-      <div class="timeline-content">
-        <div class="timeline-header">
-          <h3>Quality Assurance Intern - Hosted Functional Verification Team</h3>
-          <span class="company">VMware Inc.</span>
-          <span class="duration">MAY 2008 - AUG 2008</span>
-        </div>
-        <ul>
+
+      <div class="t-entry">
+        <div class="t-dates">May 2008 — Aug 2008 · 3 mo</div>
+        <div class="t-title">QA Intern — Hosted Functional Verification Team</div>
+        <div class="t-org">VMware · Internship · Palo Alto, California, USA</div>
+        <p class="t-summary">Functional verification of hypervisor, virtual networking, virtual hardware/devices, and host/guest OS integration.</p>
+        <ul class="t-contribs">
           <li>Developed Perl/Shell automation tool for end-to-end functional testing workflow</li>
-          <li>Tool features: automated build download with nomenclature-change resilience, installation on multiple Linux environments, configurable test execution (tests, iterations, log preferences), log generation, email-based result reporting</li>
-          <li>Planned trigger mechanism via text file input and email-based test initiation</li>
-          <li>Tested on RHEL 5.4 and multiple Linux flavours</li>
-          <li>Member of Hosted Functional Verification Team: verified hypervisor monitor, virtual networking, virtual hardware/devices, VM host/guest OS integration</li>
+          <li>Automated build download with nomenclature-change resilience, multi-environment installation, configurable test execution, log generation, and email-based reporting</li>
+          <li>Tested on RHEL 5.4 and multiple Linux flavors</li>
         </ul>
+        <div class="t-tech"><strong>Stack:</strong> Perl, Shell, RHEL, VMware Workstation, VMware vSphere, Sun VirtualBox, Microsoft VirtualPC</div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"></div>
-      <div class="timeline-content">
-        <div class="timeline-header">
-          <h3>Operations &amp; Systems Assistant</h3>
-          <span class="company">University of Massachusetts Dartmouth</span>
-          <span class="duration">SEP 2007 - FEB 2010</span>
-        </div>
-        <ul>
-          <li>Application Administrator/Support specialist for LUNA — applying updates, troubleshooting server/client issues, coordinating with vendor for new features</li>
-          <li>Brought up LUNA web interface and integrated domain login for students, faculty, and staff</li>
-          <li>Tested and installed Perdition mail retrieval proxy for campus-wide email traffic consolidation</li>
-          <li>Prepared detailed datacenter inventory for systematic shutdown procedures</li>
-          <li>Configured Apache server for LUNA web interface on Sun Solaris environment</li>
-          <li>Gained hands-on data center operations experience</li>
+
+      <div class="t-entry">
+        <div class="t-dates">Sep 2007 — Feb 2010 · 2 yrs 5 mo</div>
+        <div class="t-title">IT Assistant / Operations &amp; Systems Assistant</div>
+        <div class="t-org">UMass Dartmouth · Part-time · Massachusetts, USA</div>
+        <p class="t-summary">Enterprise Systems Administration Team (CITS) — application support, systems administration, datacenter operations, and campus infrastructure.</p>
+        <ul class="t-contribs">
+          <li>Application Administrator for LUNA — updates, troubleshooting, vendor coordination</li>
+          <li>Brought up LUNA web interface with domain login for students, faculty, and staff</li>
+          <li>Tested and installed Perdition mail retrieval proxy for campus-wide email consolidation</li>
+          <li>Prepared datacenter inventory for systematic shutdown procedures</li>
+          <li>Configured Apache on Sun Solaris for LUNA web interface</li>
         </ul>
+        <div class="t-tech"><strong>Stack:</strong> Sun Solaris, RHEL, Ubuntu, CentOS, Fedora, Debian, Mac OS X, Apache, LDAP, Sun Directory Server, VMware VI3</div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"></div>
-      <div class="timeline-content">
-        <div class="timeline-header">
-          <h3>Senior Software Engineer</h3>
-          <span class="company">Wipro Technologies</span>
-          <span class="duration">MAR 2004 - JUN 2007</span>
-        </div>
+
+      <div class="t-entry">
+        <div class="t-dates">Mar 2004 — Jun 2007 · 3 yrs 3 mo</div>
+        <div class="t-title">Senior Software Engineer</div>
+        <div class="t-org">Wipro · Full-time · Bangalore, India</div>
+        <p class="t-summary">System software and dataplane development in the telecom domain. Early-career engineering role covering network processor programming, NMS module development, and customer-site delivery.</p>
+        <details>
+          <summary>View 5 projects</summary>
+          <div class="proj-card">
+            <h4>WiMAX MAC Layer — In-House IP Development</h4>
+            <div class="proj-type">Wipro COE (Center of Excellence / R&amp;D) · Jan 2007 – Jun 2007</div>
+            <ul class="t-contribs">
+              <li>Played technical-lead role in in-house MAC-layer initiative on IXP2350</li>
+              <li>Trained team on Intel IXP2350 architecture and programming</li>
+              <li>Contributed to design and source-code management</li>
+              <li>Involved in proposal building activities for customer projects</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Intel IXP proprietary assembly, IXA SDK 4.1/4.2/4.3</div>
+          </div>
+          <div class="proj-card">
+            <h4>WiMAX BTS Transport Sub-Module</h4>
+            <div class="proj-type">European Telecom Equipment Vendor, Germany · Feb 2006 – Jan 2007</div>
+            <ul class="t-contribs">
+              <li>Implemented transport interfaces and transport functions for WiMAX BTS — developed from scratch at customer premises in Dusseldorf, Germany</li>
+              <li>Built packet generator in microcode for testing and board bring-up (1-sec timer, packet preparation from SRAM metadata + DRAM data, sinking to Transmit block)</li>
+              <li>Ported NPE-ME communication code from an existing project</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Intel IXP proprietary assembly</div>
+          </div>
+          <div class="proj-card">
+            <h4>IP Header Compression (IPHC) — RFC 2507/2508</h4>
+            <div class="proj-type">European Telecom Equipment Vendor, Germany · Aug 2005 – Dec 2006</div>
+            <ul class="t-contribs">
+              <li>Developed decompression mechanism for compressed packets per RFC 2507/2508</li>
+              <li>Implemented decompression pipeline: CID extraction, table lookup, packet reconstruction, header checksum calculation, packet length update</li>
+              <li>Supported protocol stacks IP/UDP/RTP and IP/IP/UDP</li>
+              <li>Responsible for final delivery and system testing at customer premises in Germany</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Intel IXP proprietary assembly, IXA SDK 4.1, IXDP2401 reference board, SmartBits</div>
+          </div>
+          <div class="proj-card">
+            <h4>Payload Concatenation — Wipro COE R&amp;D</h4>
+            <div class="proj-type">Wipro COE · Feb 2005 – Aug 2005</div>
+            <ul class="t-contribs">
+              <li>Complete ownership (design, coding, testing) as sole developer</li>
+              <li>Built logic to concatenate payloads of consecutive Ethernet frames with same src/dst MAC addresses</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> Intel IXP proprietary assembly, IXA SDK 4.1</div>
+          </div>
+          <div class="proj-card">
+            <h4>NMS/OSS Maintenance — Transmission Networks Management</h4>
+            <div class="proj-type">European Telecom Equipment Vendor, Belgium · May 2004 – Jan 2005</div>
+            <ul class="t-contribs">
+              <li>Developed inventory-information module for telecom multiplexers — free time slots, circuit counts, bandwidth analysis per board</li>
+              <li>Followed complete SDLC: requirements, HLD, LLD, implementation</li>
+              <li>Bug fixing and maintenance development</li>
+              <li>Maintained centralized project documents repository</li>
+            </ul>
+            <div class="t-tech"><strong>Stack:</strong> LISP, HP OpenView, ALMA Expert 5.1, CVS</div>
+          </div>
+        <div class="t-tech"><strong>Stack:</strong> C, C++, Assembly, LISP</div>
       </div>
-    </div>
+
     </div>
   </div>
 </section>
 
-<section id="personal_projects" class="projects">
+<!-- ═══ PERSONAL PROJECTS ═══ -->
+<section id="projects">
   <div class="container">
-    <h2 class="section-title">Personal Projects</h2>
-    <div class="projects-grid">
-    <div class="project-card">
-      <div class="project-header">
+    <div class="s-head">
+      <h2>Personal Projects</h2>
+      <p>Self-initiated engineering work beyond client engagements</p>
+    </div>
+
+    <div class="pp-grid">
+
+      <div class="pp-card">
         <h3>macOS Network Driver — DriverKit</h3>
-      <div class="project-link"><a href="https://github.com/ggthedev" class="btn-outline" target="_blank" rel="noopener"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></span> GitHub</a></div>
+        <div class="pp-sub">macOS · Swift · DriverKit, IOKit</div>
+        <p>Developed a macOS network driver extension using DriverKit, implementing real-time packet inspection with source/destination IP logging — demonstrating driver lifecycle management, entitlements, and user-space/kernel boundary handling.</p>
+        <div class="tags" style="margin-bottom:var(--space-sm)">
+          <span class="tag primary">Driverkit</span>
+          <span class="tag primary">Iokit</span>
+          <span class="tag">Network Driver</span>
+          <span class="tag">Packet Inspection</span>
+          <span class="tag">Kernel Boundary</span>
+          <span class="tag">Macos Driver</span>
+          <span class="tag">User-Space Driver</span>
+        </div>
+        <a class="pp-link" href="https://github.com/ggthedev">View on GitHub →</a>
       </div>
-      <p>Developed a macOS network driver extension using DriverKit, implementing real-time packet inspection with source/destination IP logging — demonstrating driver lifecycle management, entitlements, and user-space/kernel boundary handling.</p>
-      <div class="project-tech">
-        <span class="tech-tag">Swift</span>
-        <span class="tech-tag">DriverKit</span>
-        <span class="tech-tag">IOKit</span>
-        <span class="tech-tag">Xcode</span>
-        <span class="tech-tag">LLDB</span>
-      </div>
-    </div>
-    <div class="project-card">
-      <div class="project-header">
+
+      <div class="pp-card">
         <h3>BrewExplorer — Native macOS Application</h3>
-      <div class="project-link"><a href="https://github.com/ggthedev/brew-engine" class="btn-outline" target="_blank" rel="noopener"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></span> GitHub</a></div>
+        <div class="pp-sub">macOS · Swift, Golang · AppKit</div>
+        <p>Native macOS Homebrew package manager explorer built with AppKit, powered by a Golang proxy engine handling all brew operations via IPC. DMG packaged with planned Homebrew distribution.</p>
+        <div class="tags" style="margin-bottom:var(--space-sm)">
+          <span class="tag primary">Appkit</span>
+          <span class="tag">Macos Native</span>
+          <span class="tag primary">Golang</span>
+          <span class="tag">Ipc</span>
+          <span class="tag">Dmg Packaging</span>
+          <span class="tag">Homebrew</span>
+        </div>
+        <a class="pp-link" href="https://github.com/ggthedev/brew-engine">View Engine on GitHub →</a>
       </div>
-      <p>Native macOS Homebrew package manager explorer built with AppKit, powered by a Golang proxy engine handling all brew operations via IPC. DMG packaged with planned Homebrew distribution.</p>
-      <div class="project-tech">
-        <span class="tech-tag">Swift</span>
-        <span class="tech-tag">Golang</span>
-        <span class="tech-tag">AppKit</span>
-        <span class="tech-tag">Shell scripting</span>
-        <span class="tech-tag">DMG packaging</span>
+
+      <div class="pp-card">
+        <h3>Activity Tracker — Native macOS App (SwiftUI + FSEvents)</h3>
+        <div class="pp-sub">Swift 6 · SwiftUI, FSEvents API, Core Data, PDFKit, StoreKit 2</div>
+        <p>Production-style macOS productivity app for real-time file-system monitoring, time tracking, and reporting. App Store-ready with tier-based feature gating (StoreKit 2), real-time analytics dashboard, PDF export, and multi-project support.</p>
+        <div class="tags" style="margin-bottom:var(--space-sm)">
+          <span class="tag">Macos</span>
+          <span class="tag primary">Swiftui</span>
+          <span class="tag">Fsevents</span>
+          <span class="tag">Storekit2</span>
+          <span class="tag">Swift-Concurrency</span>
+        </div>
       </div>
-    </div>
+
+      <div class="pp-card">
+        <h3>ShowMySimDevs — iOS Simulator Device Browser (macOS)</h3>
+        <div class="pp-sub">Swift 5.9+ · SwiftUI, SwiftData, Swift Concurrency (async/await, actors)</div>
+        <p>Dual-mode (menu bar + full window) native macOS utility for browsing iOS simulator devices and their file systems. Optimized for sub-40 MB memory footprint.</p>
+        <div class="tags" style="margin-bottom:var(--space-sm)">
+          <span class="tag">Macos</span>
+          <span class="tag primary">Swiftui</span>
+          <span class="tag primary">Swiftdata</span>
+          <span class="tag">Ios-Simulator</span>
+          <span class="tag">Developer-Tools</span>
+        </div>
+      </div>
+
+      <div class="pp-card">
+        <h3>Device Token Service — Go Microservice</h3>
+        <div class="pp-sub">Go 1.21+ · GORM, Swagger/OpenAPI, YAML-driven configuration</div>
+        <p>RESTful Go microservice for device token registration, validation, and lifecycle management. Deployable against SQLite, PostgreSQL, or MySQL via GORM. SOLID-compliant architecture, full test coverage, graceful shutdown.</p>
+        <div class="tags" style="margin-bottom:var(--space-sm)">
+          <span class="tag">Golang</span>
+          <span class="tag">Rest-Api</span>
+          <span class="tag primary">Gorm</span>
+          <span class="tag">Openapi</span>
+          <span class="tag">Microservices</span>
+        </div>
+        <a class="pp-link" href="https://github.com/ggthedev">View on GitHub →</a>
+      </div>
+
+      <div class="pp-card">
+        <h3>SSH Key Management Suite (Bash)</h3>
+        <div class="pp-sub">Bash 4.0+</div>
+        <p>Three-tier Bash toolkit for SSH key generation, agent lifecycle management, and cross-platform key loading — 1,400+ line wizard (EasySSHKeyGenerator), enterprise-grade modular suite (AutoLoadSSHKEYS/SSHKEYMANAGER), and lightweight sync utility (LoadMySSHKeys).</p>
+        <div class="tags" style="margin-bottom:var(--space-sm)">
+          <span class="tag">Bash</span>
+          <span class="tag">Ssh</span>
+          <span class="tag">Automation</span>
+          <span class="tag">Macos</span>
+          <span class="tag">Developer-Tools</span>
+        </div>
+        <a class="pp-link" href="https://github.com/ggthedev">View on GitHub →</a>
+      </div>
+
+      <div class="pp-card">
+        <h3>Docker Ops Manager (Bash)</h3>
+        <div class="pp-sub">Bash</div>
+        <p>YAML-driven Docker provisioning and lifecycle tool supporting multi-container batch operations and state tracking. Modular libraries (config, logging, YAML parsing, container ops), 23 test suites, extensive documentation.</p>
+        <div class="tags" style="margin-bottom:var(--space-sm)">
+          <span class="tag primary">Bash</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Devops</span>
+          <span class="tag">Automation</span>
+          <span class="tag">Containers</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<section id="education" class="education">
+<!-- ═══ DOMAINS ═══ -->
+<section id="domains">
   <div class="container">
-    <h2 class="section-title">Education</h2>
-    <div class="education-grid">
-    <div class="education-card">
-      <div class="education-icon"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg></span></div>
-      <div class="education-content">
-        <h3>Master of Science — Computer Engineering</h3>
-        <p class="institution">University of Massachusetts Dartmouth</p>
-        <span class="duration"></span>
-        <p class="edu-note">Coursework completed</p>
-      </div>
+    <div class="s-head">
+      <h2>Domains</h2>
+      <p>Industries and verticals with hands-on delivery experience</p>
     </div>
-    <div class="education-card">
-      <div class="education-icon"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg></span></div>
-      <div class="education-content">
-        <h3>Bachelor of Technology — Electronics and Communication Engineering</h3>
-        <p class="institution">Bharati Vidyapeeth College of Engineering (Guru Gobind Singh Indraprastha University)</p>
-        <span class="duration">2003</span>
-        
-      </div>
-    </div>
+    <div class="domain-bar">
+      <span class="domain-chip">Telecom</span>
+      <span class="domain-chip">Healthcare</span>
+      <span class="domain-chip">Medical Devices</span>
+      <span class="domain-chip">Fintech</span>
+      <span class="domain-chip">Banking</span>
+      <span class="domain-chip">Retail</span>
+      <span class="domain-chip">Enterprise Mobility</span>
+      <span class="domain-chip">OTT / Streaming</span>
+      <span class="domain-chip">IoT</span>
+      <span class="domain-chip">Home Automation</span>
+      <span class="domain-chip">Real Estate</span>
+      <span class="domain-chip">Education</span>
+      <span class="domain-chip">Workforce Management</span>
+      <span class="domain-chip">Point of Sale</span>
     </div>
   </div>
 </section>
 
-<section id="contact" class="contact">
+<!-- ═══ EDUCATION ═══ -->
+<section id="education">
   <div class="container">
-    <h2 class="section-title">Get in Touch</h2>
-    <div class="contact-content">
-      <div class="contact-info">
-      <div class="contact-item">
-        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
-        <div><h4>Email</h4><p><a href="mailto:reachgauravguptaforios@gmail.com">reachgauravguptaforios@gmail.com</a></p></div>
+    <div class="s-head">
+      <h2>Education &amp; Training</h2>
+    </div>
+
+    <div class="edu-item">
+      <h3>Master of Science — Computer Engineering</h3>
+      <div class="edu-inst">University of Massachusetts Dartmouth</div>
+      <div class="edu-meta">Massachusetts, USA · Coursework completed</div>
+    </div>
+
+    <div class="edu-item">
+      <h3>Bachelor of Technology — Electronics and Communication Engineering</h3>
+      <div class="edu-inst">Bharati Vidyapeeth College of Engineering · Guru Gobind Singh Indraprastha University</div>
+      <div class="edu-meta">Delhi, India · 2003</div>
+    </div>
+
+    <div class="edu-item" style="margin-top:var(--space-xl)">
+      <h3 style="font-size:.88rem;color:var(--fg2)">Training &amp; Courses</h3>
+      <div class="tags" style="margin-top:var(--space-sm)">
+        <span class="tag">On Track With Golang</span>
+        <span class="tag">Javascript Road Trip Part 1</span>
+        <span class="tag">Flying Through Python</span>
+        <span class="tag">Diploma in Open Source Application Development — Centre for Development of Advanced Computing (CDAC), Noida</span>
+        <span class="tag">Intel 87C51 Microcontroller Summer Training — Indian Institute of Technology, New Delhi</span>
       </div>
-      <div class="contact-item">
-        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-        <div><h4>Phone</h4><p>+919205701581</p></div>
+    </div>
+
+    <div class="edu-item" style="margin-top:var(--space-lg)">
+      <h3 style="font-size:.88rem;color:var(--fg2)">Academic Projects</h3>
+
+      <div class="proj-card">
+        <h4>SDRAM Controller: Study, Coding and Simulation Using VHDL</h4>
+        <div class="proj-type">Undergraduate · 6 months</div>
+        <p>Design and coding. Tools: VHDL, Innoveda Dashboard.</p>
       </div>
-      <div class="contact-item">
-        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
-        <div><h4>Location</h4><p>Bengaluru, India</p></div>
+
+      <div class="proj-card">
+        <h4>Airline Ticketing System</h4>
+        <div class="proj-type">School · 2 months</div>
+        <p>Design and coding. Tools: C++, Turbo C.</p>
       </div>
-      <div class="contact-item">
-        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
-        <div><h4>LinkedIn</h4><p><a href="https://www.linkedin.com/in/ggupta1981/" target="_blank" rel="noopener">https://www.linkedin.com/in/ggupta1981/</a></p></div>
-      </div>
-      <div class="contact-item">
-        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
-        <div><h4>Portfolio</h4><p><a href="https://ggthedev.github.io/developergauravgupta/" target="_blank" rel="noopener">https://ggthedev.github.io/developergauravgupta/</a></p></div>
-      </div>
-      <div class="contact-item">
-        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M15.725 0l-1.72 1.277 6.39 8.588 1.72-1.277L15.725 0zm-3.94 3.418l-1.369 1.644 8.225 6.85 1.369-1.644-8.225-6.85zm-3.15 4.465l-.905 1.94 9.702 4.517.904-1.94-9.701-4.517zm-1.85 4.86l-.44 2.093 10.473 2.201.44-2.092-10.473-2.203zM1.89 15.47V24h19.19v-8.53h-2.133v6.397H4.021v-6.396H1.89zm4.265 2.133v2.13h10.66v-2.13H6.154z"/></svg></span>
-        <div><h4>Stack Overflow</h4><p><a href="https://stackoverflow.com/story/gauravgupta1981" target="_blank" rel="noopener">Profile</a></p></div>
-      </div>
-      </div>
+
     </div>
   </div>
 </section>
 
-<footer class="footer">
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
   <div class="container">
-    <p>&copy; 2026 Gaurav Gupta. All rights reserved.</p>
+    <div class="s-head">
+      <h2>Get In Touch</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-item"><strong>Email</strong> <a href="mailto:reachgauravguptaforios@gmail.com">reachgauravguptaforios@gmail.com</a></div>
+      <div class="contact-item"><strong>Phone</strong> <a href="tel:+919205701581">+91 920 570 1581</a></div>
+      <div class="contact-item"><strong>LinkedIn</strong> <a href="https://www.linkedin.com/in/ggupta1981/">linkedin.com/in/ggupta1981/</a></div>
+      <div class="contact-item"><strong>GitHub</strong> <a href="https://github.com/ggthedev">github.com/ggthedev</a></div>
+      <div class="contact-item"><strong>Portfolio</strong> <a href="https://ggthedev.github.io/developergauravgupta/">ggthedev.github.io/developergauravgupta/</a></div>
+      <div class="contact-item"><strong>Stack&nbsp;Overflow</strong> <a href="https://stackoverflow.com/story/gauravgupta1981">stackoverflow.com/story/gauravgupta1981</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Gaurav Gupta · Software Engineer · Technical Architect · 2004 – Present</p>
+    <p style="margin-top:4px;color:var(--bg4)">Entirely static HTML — no JavaScript, no tracking, no cookies.</p>
   </div>
 </footer>
+
 </body>
 </html>
